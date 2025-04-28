@@ -3,7 +3,8 @@
 import { Injectable } from '@nestjs/common';
 
 import { CreateUsuarioDto, UpdateUsuarioDto } from './dto/usuario.dto/usuario.dto';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { TipoUsuario } from 'generated/prisma';
 
 
 @Injectable()
@@ -12,7 +13,10 @@ export class UsuarioService {
 
   async create(createUsuarioDto: CreateUsuarioDto) {
     return this.prisma.usuario.create({
-      data: createUsuarioDto,
+      data: {
+        ...createUsuarioDto,
+        tipoUsuario: createUsuarioDto.tipoUsuario.toUpperCase() as TipoUsuario,
+      },
     });
   }
 
@@ -22,20 +26,23 @@ export class UsuarioService {
 
   async findOne(id: string) {
     return this.prisma.usuario.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
   }
 
   async update(id: string, updateUsuarioDto: UpdateUsuarioDto) {
     return this.prisma.usuario.update({
-      where: { id },
-      data: updateUsuarioDto,
+      where: { id: Number(id) },
+      data: {
+        ...updateUsuarioDto,
+        tipoUsuario: updateUsuarioDto.tipoUsuario?.toUpperCase() as TipoUsuario,
+      },
     });
   }
 
   async remove(id: string) {
     return this.prisma.usuario.update({
-      where: { id },
+      where: { id: Number(id) },
       data: { deletedAt: new Date() }, // Soft delete
     });
   }
