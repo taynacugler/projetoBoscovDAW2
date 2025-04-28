@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Definindo o modelo do Usuário
+model Usuario {
+  id              Int         @id @default(autoincrement()) // Identificador único do usuário
+  nome            String // Nome do usuário
+  senha           String // Senha do usuário
+  email           String      @unique // E-mail único do usuário
+  status          String // Status do usuário
+  username        String      @unique // Nome de usuário único
+  dataNascimento  DateTime // Data de nascimento
+  dataCriacao     DateTime    @default(now()) // Data de criação do usuário
+  dataAtualizacao DateTime    @updatedAt // Data de atualização do usuário
+  tipoUsuario     TipoUsuario // Tipo do usuário (ADM ou Comum)
+  deletedAt       DateTime?   @db.Timestamptz // Soft delete - data e hora da exclusão lógica
+  avaliacoes      Avaliacao[] // Relacionamento com avaliações
+}
+
+enum TipoUsuario {
+  ADM
+  COMUM
+}
+
+// Definindo o modelo de Avaliação
+model Avaliacao {
+  idUsuario  Int // Referência ao ID do usuário que fez a avaliação
+  idFilme    Int // Referência ao ID do filme que foi avaliado
+  nota       Float // Nota da avaliação (por exemplo, 0 a 10)
+  comentario String // Comentário sobre o filme
+  deletedAt  DateTime? @db.Timestamptz // Soft delete - data e hora da exclusão lógica
+
+  usuario Usuario @relation(fields: [idUsuario], references: [id]) // Relacionamento com o usuário
+  filme   Filme   @relation(fields: [idFilme], references: [id]) // Relacionamento com o filme
+
+  @@id([idUsuario, idFilme]) // Chave composta para garantir que um usuário só pode avaliar um filme uma vez
+}
+
+// Definindo o modelo de Filme
+model Filme {
+  id            Int           @id @default(autoincrement()) // Identificador único do filme
+  nome          String // Nome do filme
+  diretor       String // Diretor do filme
+  anoLancamento Int // Ano de lançamento do filme
+  duracao       Int // Duração do filme em minutos
+  produtora     String // Produtora do filme
+  classificacao String // Classificação do filme
+  poster        String // Caminho da imagem do poster
+  deletedAt     DateTime?     @db.Timestamptz // Soft delete - data e hora da exclusão lógica
+  generos       GeneroFilme[] // Relacionamento com o gênero do filme
+  avaliacoes    Avaliacao[] // Relacionamento com as avaliações
+}
+
+// Definindo o modelo de Gênero de Filme (relacionamento entre Filme e Gênero)
+model GeneroFilme {
+  idGenero Int // Referência ao Gênero
+  idFilme  Int // Referência ao Filme
+
+  genero Genero @relation(fields: [idGenero], references: [id]) // Relacionamento com Gênero
+  filme  Filme  @relation(fields: [idFilme], references: [id]) // Relacionamento com Filme
+
+  @@id([idGenero, idFilme]) // Chave composta para garantir que um filme só tenha um gênero
+}
+
+// Definindo o modelo de Gênero
+model Genero {
+  id           Int           @id @default(autoincrement()) // Identificador único do gênero
+  descricao    String // Descrição do gênero (exemplo: Ação, Comédia, etc.)
+  generosFilme GeneroFilme[] // Relacionamento com o filme
+}
