@@ -1,0 +1,17 @@
+<h1>Login</h1>
+<p>Bem-vindo! Faça login para continuar a usar o aplicativos</p>
+
+<app-input
+  label="Email"
+  [formControl]="emailControl"
+  tipo="email">
+</app-input>
+
+<app-input
+  label="Senha"
+  [formControl]="senhaControl"
+  tipo="password">
+</app-input>
+
+<app-button texto="Entrar"></app-button>
+<app-button label="Ir para Cadastro" rota="/cadastro"></app-button>
