@@ -7,11 +7,14 @@ async function bootstrap() {
 
   // Configuração do Swagger
   const config = new DocumentBuilder()
-    .setTitle('API Example')
-    .setDescription('The API description')
-    .setVersion('1.0')
+    .setTitle('API Example') // Título da API
+    .setDescription('The API description') // Descrição da API
+    .setVersion('1.0') // Versão da API
+    .addTag('users') // Adiciona uma tag para categorizar as rotas
     .build();
   const document = SwaggerModule.createDocument(app, config);
+  
+  // Configura o Swagger UI para ser acessado na URL '/api'
   SwaggerModule.setup('api', app, document);
 
   // Configura a porta, ou usa a padrão 3000
