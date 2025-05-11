@@ -5,7 +5,7 @@ import { ButtonComponent } from './shared/components/button/button.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],  // Importando o ButtonComponent
+  imports: [RouterOutlet],  
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

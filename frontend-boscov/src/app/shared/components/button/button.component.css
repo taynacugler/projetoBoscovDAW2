@@ -1,0 +1,24 @@
+button, a {
+    display: inline-block;
+    padding: 12px 24px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #00ffff;
+    background-color: #000;
+    border: 2px solid #00ffff;
+    border-radius: 0px; /* quadrado */
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #ff00ff;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  button:hover, a:hover {
+    background-color: #111;
+    color: #ff00ff;
+    border-color: #ff00ff;
+    box-shadow: 3px 3px 0 #00ffff;
+  }
+  
