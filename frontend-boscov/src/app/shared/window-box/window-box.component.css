@@ -1,0 +1,62 @@
+/* Window Box Component */
+:host {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.window {
+  background-color: rgb(252, 208, 236);
+  border: 2px solid black;
+  width: 100%;
+  max-width: 600px; /* Ajuste o tamanho conforme necessário */
+  margin: auto;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.2); /* Sombra externa */
+  font-family: 'Courier New', monospace;
+}
+
+.window-header {
+  background-color: rgb(192, 255, 255);
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 2px solid black;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.btn {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.minimize {
+  background-color: var(--c-green);
+}
+
+.maximize {
+  background-color: var(--c-greenish);
+}
+
+.close {
+  background-color: var(--c-pink);
+}
+
+.window-body {
+  padding: 20px;
+  background-color: var(--c-light-pink);
+}

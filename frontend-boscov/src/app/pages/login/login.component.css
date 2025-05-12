@@ -1,30 +1,127 @@
 :host {
-    display: block;
-    height: 100vh;
-    background: linear-gradient(135deg, #000000, #1a1a1a);
-    color: #00ffff;
-    font-family: 'Courier New', monospace;
-    padding: 40px 20px;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-    color: #ff00ff;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 2px #000;
-  }
-  
-  p {
-    font-size: 1rem;
-    margin-bottom: 30px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Courier New', monospace;
+  color: #fff;
+
+  background: 
+    radial-gradient(circle at 20% 30%, #ff66c4, transparent 25%),
+    radial-gradient(circle at 80% 20%, #7fff00, transparent 30%),
+    radial-gradient(circle at 50% 80%, #8a2be2, transparent 40%),
+    radial-gradient(circle at 70% 70%, #00ffff, transparent 35%),
+    radial-gradient(circle at 30% 70%, #ffcc00, transparent 45%),
+    conic-gradient(from 90deg, #ff1493, #00ffff, #7fff00, #ff1493);
+
+  background-blend-mode: screen, lighten;
+  background-color: #222;
+}
+
+/* Title Styling */
+h1 {
+  font-size: 2.5rem;
+  color: #ff00ff; /* Cor de título em roxo */
+  margin-bottom: 10px;
+  text-transform: uppercase; /* Letras maiúsculas */
+  text-shadow: 1px 1px 2px #000; /* Sombra do texto */
+}
+
+/* Paragraph Styling */
+p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #ffffff; /* Cor do texto do parágrafo */
+}
+
+/* Form Container */
+.login-container {
+  background-color: #222222; /* Fundo escuro para o formulário */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Sombra brilhante */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px; /* Limite de largura do formulário */
+}
+
+/* Input Fields */
+input[type="text"], input[type="password"] {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #333333; /* Fundo escuro para os campos de input */
+  color: #00ffff; /* Cor do texto */
+  border: 2px solid #00ffff; /* Borda azul neon */
+  border-radius: 5px;
+  outline: none;
+  box-shadow: inset 2px 2px 5px rgba(0, 255, 255, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Focus State for Inputs */
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #ff00ff; /* Borda roxa no foco */
+  box-shadow: inset 2px 2px 5px rgba(255, 0, 255, 0.5);
+}
+
+/* Submit Button */
+button {
+  background-color: #00ffff; /* Cor do fundo do botão */
+  color: #000000; /* Cor do texto */
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  padding: 12px;
+  border: 2px solid #00ffff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 255, 255, 0.3);
+}
+
+/* Button Hover Effect */
+button:hover {
+  background-color: #ff00ff; /* Cor de fundo roxa no hover */
+  color: #000000; /* Cor do texto no hover */
+  box-shadow: 0 6px 10px rgba(255, 0, 255, 0.6);
+}
+
+/* Button Active Effect */
+button:active {
+  background-color: #ff1493; /* Cor de fundo rosa ao pressionar */
+  box-shadow: inset 2px 2px 5px rgba(255, 0, 255, 0.7);
+}
+
+/* Remember Me Checkbox */
+label {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 10px;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+  font-size: 0.9rem;
+  color: #ff00ff; /* Cor roxa para o link */
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #ff0000; /* Mensagens de erro em vermelho */
+  font-size: 1rem;
+  text-align: center;
+}

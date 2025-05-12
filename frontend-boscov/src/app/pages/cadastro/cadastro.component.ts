@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } 
 import { Router } from '@angular/router';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
+import { WindowBoxComponent } from '../../shared/window-box/window-box.component';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, ButtonComponent],
+  imports: [ReactiveFormsModule, InputComponent, ButtonComponent, WindowBoxComponent],
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })

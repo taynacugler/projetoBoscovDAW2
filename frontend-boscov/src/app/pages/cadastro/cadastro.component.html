@@ -1,11 +1,14 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <app-input label="Nome" [formControl]="nome" type="text"></app-input>
-  <app-input label="Email" [formControl]="email" type="email"></app-input>
-  <app-input label="Senha" [formControl]="senha" type="password"></app-input>
-  <app-input label="Status" [formControl]="status" type="text"></app-input>
-  <app-input label="Username" [formControl]="username" type="text"></app-input>
-  <app-input label="Data de Nascimento" [formControl]="dataNascimento" type="date"></app-input>
+<app-window-box title="CADASTRO">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <app-input label="Nome" [formControl]="nome" type="text"></app-input>
+    <app-input label="Email" [formControl]="email" type="email"></app-input>
+    <app-input label="Senha" [formControl]="senha" type="password"></app-input>
+    <app-input label="Username" [formControl]="username" type="text"></app-input>
+    <app-input label="Data de Nascimento" [formControl]="dataNascimento" type="date"></app-input>
 
-  <app-button texto="Cadastrar" tipo="submit"></app-button>
-  <app-button texto="Voltar para Login" (click)="voltar()"></app-button>
-</form>
+    <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 20px;">
+      <app-button label="Cadastrar" tipo="submit"></app-button>
+      <app-button label="Voltar para Login" (click)="voltar()"></app-button>
+    </div>
+  </form>
+</app-window-box>

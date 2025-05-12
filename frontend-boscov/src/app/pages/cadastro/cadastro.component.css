@@ -1,11 +1,24 @@
 :host {
-    display: block;
-    height: 100vh;
-    background: linear-gradient(135deg, #000000, #1a1a1a);
-    color: #00ffff;
-    font-family: 'Courier New', monospace;
-    padding: 40px 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Courier New', monospace;
+  color: #fff;
+
+  background: 
+    radial-gradient(circle at 20% 30%, #ff66c4, transparent 25%),
+    radial-gradient(circle at 80% 20%, #7fff00, transparent 30%),
+    radial-gradient(circle at 50% 80%, #8a2be2, transparent 40%),
+    radial-gradient(circle at 70% 70%, #00ffff, transparent 35%),
+    radial-gradient(circle at 30% 70%, #ffcc00, transparent 45%),
+    conic-gradient(from 90deg, #ff1493, #00ffff, #7fff00, #ff1493);
+
+  background-blend-mode: screen, lighten;
+  background-color: #222;
+}
   
   h1 {
     font-size: 2.5rem;

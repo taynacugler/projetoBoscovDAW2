@@ -1,32 +1,43 @@
+:host {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Label (se estiver usando dentro do componente) */
 label {
-    display: block;
-    font-family: 'Courier New', monospace;
-    color: #00ffff;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 12px;
-    background-color: #000;
-    border: 2px solid #00ffff;
-    border-radius: 0px; /* quadrado */
-    color: #fff;
-    font-size: 1rem;
-    font-family: 'Courier New', monospace;
-    box-shadow: 2px 2px 0 #ff00ff;
-    outline: none;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  input::placeholder {
-    color: #888;
-    font-style: italic;
-  }
-  
-  input:focus {
-    border-color: #ff00ff;
-    box-shadow: 2px 2px 0 #00ffff;
-    background-color: #111;
-  }
+  display: block;
+  margin-bottom: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  color: #000;
+}
+
+/* Input */
+input {
+  width: 100%;
+  padding: 12px;
+  background-color: rgb(255, 240, 250);
+  border: 2px solid #000000;
+  border-radius: 1px;
+  color: black;
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+/* Placeholder */
+input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}
+
+/* Focus effect */
+input:focus {
+  border-color: var(--c-pink, #ff1493);
+  background-color: var(--c-white, #ffffff);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}

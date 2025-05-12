@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { InputComponent } from '../../shared/components/input/input.component';
+import { InputComponent } from '../../shared/components/input/input.component';7
 import { ReactiveFormsModule } from '@angular/forms';
+import { WindowBoxComponent } from '../../shared/window-box/window-box.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonComponent, InputComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, InputComponent, WindowBoxComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

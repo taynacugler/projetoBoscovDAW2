@@ -1,24 +1,24 @@
-button, a {
-    display: inline-block;
-    padding: 12px 24px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: #00ffff;
-    background-color: #000;
-    border: 2px solid #00ffff;
-    border-radius: 0px; /* quadrado */
-    cursor: pointer;
-    box-shadow: 3px 3px 0 #ff00ff;
-    transition: all 0.2s ease-in-out;
-    text-align: center;
-    text-decoration: none;
-  }
-  
-  button:hover, a:hover {
-    background-color: #111;
-    color: #ff00ff;
-    border-color: #ff00ff;
-    box-shadow: 3px 3px 0 #00ffff;
-  }
-  
+/* Button Component */
+button {
+  background-color: rgb(201, 48, 201); /* Cor de fundo */
+  color: rgb(0, 0, 0);
+  font-family: 'Courier New', monospace; /* Fonte */
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: 2px solid #000000; /* Cor da borda */
+  border-radius: 3px;
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2), 2px 2px 5px rgba(0, 0, 0, 0.2);
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--c-pink); /* Alterando cor para rosa claro no hover */
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  background-color: var(--c-greenish); /* Cor ao clicar */
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6), 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
