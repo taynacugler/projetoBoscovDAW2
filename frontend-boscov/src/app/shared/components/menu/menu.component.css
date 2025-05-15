@@ -1,0 +1,32 @@
+.menu-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(246, 182, 255);
+  padding: 10px;
+  border-bottom: 3px solid black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  font-family: 'Courier New', monospace;
+}
+
+.menu-bar button {
+  background-color: lightpink;
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.menu-bar button:hover {
+  background-color: rgb(47, 255, 227);
+  color: #000;
+}
