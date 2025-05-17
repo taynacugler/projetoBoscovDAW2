@@ -1,11 +1,9 @@
 // usuario.service.ts
 
 import { Injectable } from '@nestjs/common';
-
 import { CreateUsuarioDto, UpdateUsuarioDto } from './dto/usuario.dto/usuario.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { TipoUsuario } from 'generated/prisma';
-
 
 @Injectable()
 export class UsuarioService {
@@ -15,13 +13,16 @@ export class UsuarioService {
     return this.prisma.usuario.create({
       data: {
         ...createUsuarioDto,
-        tipoUsuario: createUsuarioDto.tipoUsuario.toUpperCase() as TipoUsuario,
+        dataNascimento: new Date(createUsuarioDto.dataNascimento), 
+        tipoUsuario: TipoUsuario.COMUM, // fixo como COMUM
       },
     });
   }
 
   async findAll() {
-    return this.prisma.usuario.findMany();
+    return this.prisma.usuario.findMany({
+      where: { deletedAt: null }, // ignora usuários "deletados"
+    });
   }
 
   async findOne(id: string) {
@@ -31,19 +32,25 @@ export class UsuarioService {
   }
 
   async update(id: string, updateUsuarioDto: UpdateUsuarioDto) {
+    // Atualiza o usuário sem alterar tipoUsuario
     return this.prisma.usuario.update({
       where: { id: Number(id) },
       data: {
         ...updateUsuarioDto,
-        tipoUsuario: updateUsuarioDto.tipoUsuario?.toUpperCase() as TipoUsuario,
       },
+    });
+  }
+
+  async findByEmail(email: string) {
+    return this.prisma.usuario.findUnique({
+      where: { email },
     });
   }
 
   async remove(id: string) {
     return this.prisma.usuario.update({
       where: { id: Number(id) },
-      data: { deletedAt: new Date() }, // Soft delete
+      data: { deletedAt: new Date() },
     });
   }
 }

@@ -7463,7 +7463,7 @@ export namespace Prisma {
     dataNascimento: Date | string
     dataCriacao?: Date | string
     dataAtualizacao?: Date | string
-    tipoUsuario: $Enums.TipoUsuario
+    tipoUsuario?: $Enums.TipoUsuario
     deletedAt?: Date | string | null
     avaliacoes?: AvaliacaoCreateNestedManyWithoutUsuarioInput
   }
@@ -7478,7 +7478,7 @@ export namespace Prisma {
     dataNascimento: Date | string
     dataCriacao?: Date | string
     dataAtualizacao?: Date | string
-    tipoUsuario: $Enums.TipoUsuario
+    tipoUsuario?: $Enums.TipoUsuario
     deletedAt?: Date | string | null
     avaliacoes?: AvaliacaoUncheckedCreateNestedManyWithoutUsuarioInput
   }
@@ -7522,7 +7522,7 @@ export namespace Prisma {
     dataNascimento: Date | string
     dataCriacao?: Date | string
     dataAtualizacao?: Date | string
-    tipoUsuario: $Enums.TipoUsuario
+    tipoUsuario?: $Enums.TipoUsuario
     deletedAt?: Date | string | null
   }
 
@@ -8631,7 +8631,7 @@ export namespace Prisma {
     dataNascimento: Date | string
     dataCriacao?: Date | string
     dataAtualizacao?: Date | string
-    tipoUsuario: $Enums.TipoUsuario
+    tipoUsuario?: $Enums.TipoUsuario
     deletedAt?: Date | string | null
   }
 
@@ -8645,7 +8645,7 @@ export namespace Prisma {
     dataNascimento: Date | string
     dataCriacao?: Date | string
     dataAtualizacao?: Date | string
-    tipoUsuario: $Enums.TipoUsuario
+    tipoUsuario?: $Enums.TipoUsuario
     deletedAt?: Date | string | null
   }
 

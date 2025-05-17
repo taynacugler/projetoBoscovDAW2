@@ -4,7 +4,7 @@ import { UsuarioService } from './usuario.service';
 import { ApiTags} from'@nestjs/swagger';
 import { CreateUsuarioDto, UpdateUsuarioDto } from './dto/usuario.dto/usuario.dto';
 
-@Controller('usuarios')
+@Controller('usuario')
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 

@@ -24,7 +24,7 @@ model Usuario {
   dataNascimento  DateTime 
   dataCriacao     DateTime @default(now())  
   dataAtualizacao DateTime @updatedAt  
-  tipoUsuario     TipoUsuario  
+  tipoUsuario     TipoUsuario  @default(COMUM)
   deletedAt       DateTime? @db.Timestamptz 
   avaliacoes      Avaliacao[] 
 }

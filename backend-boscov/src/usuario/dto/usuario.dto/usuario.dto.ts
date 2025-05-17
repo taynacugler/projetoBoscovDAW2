@@ -1,7 +1,10 @@
 export class UsuarioDto {}
 // dto/usuario.dto.ts
 
-import { IsString, IsEmail, IsEnum, IsDate } from 'class-validator';
+import { IsString, IsEmail, IsEnum, IsDate, IsDateString } from 'class-validator';
+
+import { IsOptional } from 'class-validator';
+
 
 export class CreateUsuarioDto {
   @IsString()
@@ -16,32 +19,31 @@ export class CreateUsuarioDto {
   @IsString()
   username: string;
 
-  @IsEnum(['adm', 'comum'])
-  tipoUsuario: 'adm' | 'comum';
+  @IsDateString()
+  dataNascimento: string;
 
-  @IsDate()
-  dataNascimento: Date;
-  
   @IsString()
-  status: string; 
+  status: string;
 }
 
 export class UpdateUsuarioDto {
+  @IsOptional()
   @IsString()
-  nome: string;
+  nome?: string;
 
+  @IsOptional()
   @IsString()
-  senha: string;
+  senha?: string;
 
+  @IsOptional()
   @IsEmail()
-  email: string;
+  email?: string;
 
+  @IsOptional()
   @IsString()
-  username: string;
+  username?: string;
 
-  @IsEnum(['adm', 'comum'])
-  tipoUsuario: 'adm' | 'comum';
-
+  @IsOptional()
   @IsDate()
-  dataNascimento: Date;
+  dataNascimento?: Date;
 }

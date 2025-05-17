@@ -1,9 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Configurar CORS — ajuste o origin conforme o domínio do seu frontend
+  app.enableCors({
+    origin: 'http://localhost:4200', // URL do seu frontend Angular
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true, // caso use cookies/autenticação via cookies
+  });
 
   // Configuração do Swagger
   const config = new DocumentBuilder()
@@ -12,15 +21,18 @@ async function bootstrap() {
     .setVersion('1.0') // Versão da API
     .addTag('users') // Adiciona uma tag para categorizar as rotas
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
-  
-  // Configura o Swagger UI para ser acessado na URL '/api'
+
   SwaggerModule.setup('api', app, document);
+  
+   app.useGlobalPipes(new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+  }));
 
-  // Configura a porta, ou usa a padrão 3000
+
   const port = process.env.PORT || 3000;
-
-  // Inicia o servidor na porta configurada
   await app.listen(port);
   console.log(`Application is running on: http://localhost:${port}`);
 }
