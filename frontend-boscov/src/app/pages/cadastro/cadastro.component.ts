@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { WindowBoxComponent } from '../../shared/window-box/window-box.component';
+import { AuthService } from '../../../services/auth.service';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -15,7 +17,11 @@ import { WindowBoxComponent } from '../../shared/window-box/window-box.component
 export class CadastroComponent {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService // <-- INJETADO AQUI
+  ) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -53,8 +59,21 @@ export class CadastroComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      console.log('Dados cadastrados:', this.form.value);
-      // Aqui você pode enviar os dados para um serviço ou API
+      const formData = {
+        ...this.form.value,
+        dataNascimento: new Date(this.form.value.dataNascimento),
+        tipoUsuario: 'COMUM' // Pode ser fixo ou dinâmico se quiser
+      };
+
+      this.authService.register(formData).subscribe({
+        next: () => {
+          alert('Cadastro realizado com sucesso!');
+          this.router.navigate(['/login']);
+        },
+        error: (err: { error: { message: any } }) => {
+          alert('Erro ao cadastrar: ' + (err.error.message || 'Erro desconhecido'));
+        },
+      });
     } else {
       this.form.markAllAsTouched();
     }
