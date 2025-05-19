@@ -12,4 +12,9 @@ export class AuthController {
   async register(@Body() createUsuarioDto: CreateUsuarioDto) {
     return this.authService.register(createUsuarioDto);
   }
+
+  @Post('login')
+  async login(@Body() credentials: { email: string; senha: string }) {
+    return this.authService.login(credentials);
+  }
 }

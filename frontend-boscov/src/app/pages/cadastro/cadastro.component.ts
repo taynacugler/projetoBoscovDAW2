@@ -7,6 +7,7 @@ import { WindowBoxComponent } from '../../shared/window-box/window-box.component
 import { AuthService } from '../../../services/auth.service';
 
 
+
 @Component({
   selector: 'app-cadastro',
   standalone: true,
@@ -26,7 +27,6 @@ export class CadastroComponent {
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
-      status: ['', Validators.required],
       username: ['', Validators.required],
       dataNascimento: ['', Validators.required],
     });
@@ -57,27 +57,35 @@ export class CadastroComponent {
     return this.form.get('dataNascimento') as FormControl;
   }
 
-  onSubmit(): void {
-    if (this.form.valid) {
-      const formData = {
-        ...this.form.value,
-        dataNascimento: new Date(this.form.value.dataNascimento),
-        tipoUsuario: 'COMUM' // Pode ser fixo ou dinâmico se quiser
-      };
+onSubmit(): void {
+  if (this.form.valid) {
+    const dadosCadastro = {
+      nome: this.form.value.nome,
+      email: this.form.value.email,
+      senha: this.form.value.senha,
+      username: this.form.value.username,
+      dataNascimento: this.form.value.dataNascimento
+    };
 
-      this.authService.register(formData).subscribe({
-        next: () => {
-          alert('Cadastro realizado com sucesso!');
-          this.router.navigate(['/login']);
-        },
-        error: (err: { error: { message: any } }) => {
-          alert('Erro ao cadastrar: ' + (err.error.message || 'Erro desconhecido'));
-        },
-      });
-    } else {
-      this.form.markAllAsTouched();
-    }
+    console.log('Enviando cadastro com dados:', dadosCadastro);
+
+    this.authService.register(dadosCadastro).subscribe({
+      next: (res) => {
+        console.log('Usuário cadastrado com sucesso:', res);
+        alert('Cadastro realizado com sucesso!');
+        this.router.navigate(['/login']); // Redireciona para tela de login
+      },
+      error: (err) => {
+        console.error('Erro no cadastro:', err);
+        alert('Erro ao cadastrar: ' + (err.error?.message || 'Erro desconhecido'));
+      }
+    });
+  } else {
+    console.warn('Formulário de cadastro inválido:', this.form.value);
+    this.form.markAllAsTouched();
   }
+}
+
 
   voltar(): void {
     this.router.navigate(['/login']);

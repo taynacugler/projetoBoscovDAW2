@@ -6,7 +6,7 @@ import { InputComponent } from './shared/components/input/input.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent],  
+  imports: [RouterOutlet, MenuComponent, ButtonComponent, InputComponent],  
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

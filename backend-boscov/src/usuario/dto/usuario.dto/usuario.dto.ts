@@ -21,9 +21,6 @@ export class CreateUsuarioDto {
 
   @IsDateString()
   dataNascimento: string;
-
-  @IsString()
-  status: string;
 }
 
 export class UpdateUsuarioDto {

@@ -14,7 +14,8 @@ export class UsuarioService {
       data: {
         ...createUsuarioDto,
         dataNascimento: new Date(createUsuarioDto.dataNascimento), 
-        tipoUsuario: TipoUsuario.COMUM, // fixo como COMUM
+        tipoUsuario: TipoUsuario.COMUM,
+        status: 'ativo',
       },
     });
   }

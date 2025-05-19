@@ -4,6 +4,8 @@ import { ButtonComponent } from './components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { InputComponent } from './components/input/input.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [],
@@ -12,7 +14,9 @@ import { MenuComponent } from './components/menu/menu.component';
     RouterModule,
     InputComponent,
     ButtonComponent,
-    MenuComponent
+    MenuComponent,
+    HttpClientModule,
+    HttpClient
   ],
   exports: [
     ButtonComponent

@@ -7,7 +7,7 @@
     <app-input label="Data de Nascimento" [formControl]="dataNascimento" type="date"></app-input>
 
     <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 20px;">
-      <app-button label="Cadastrar" tipo="submit"></app-button>
+          <app-button label="Cadastrar" tipo="submit" (click)="onSubmit()"></app-button>
       <app-button label="Voltar para Login" (click)="voltar()"></app-button>
     </div>
   </form>

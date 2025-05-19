@@ -1,18 +1,16 @@
 <app-window-box title="LOGIN">
-  <form [formGroup]="form">
-    <app-input
-      label="Email"
-      [formControl]="emailControl"
-      type="email">
-    </app-input>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <app-input
-      label="Senha"
-      [formControl]="senhaControl"
-      type="password">
-    </app-input>
+    <app-input label="Email" [formControl]="email" type="email"></app-input>
+    <app-input label="Senha" [formControl]="senha" type="password"></app-input>
 
-    <app-button label="Entrar"></app-button>
-    <app-button label="Ir para Cadastro" rota="/cadastro"></app-button>
+    <div style="margin-top: 20px;">
+      <app-button label="Entrar" tipo="submit" (click)="onSubmit()"></app-button>
+    </div>
+
   </form>
+
+  <div style="margin-top: 15px;">
+    <app-button label="Ir para Cadastro" (click)="irParaCadastro()"></app-button>
+  </div>
 </app-window-box>
