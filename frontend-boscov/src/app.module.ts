@@ -13,7 +13,7 @@ import { SharedModule } from './app/shared/shared.module';
   imports: [
     BrowserModule,
     HttpClientModule,  // para o HttpClient funcionar
-    SharedModule       // se precisar importar seu SharedModule
+    SharedModule,      // se precisar importar seu SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
