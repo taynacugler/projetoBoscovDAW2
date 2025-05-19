@@ -7,9 +7,10 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { PrismaService } from './prisma/prisma.service'; 
 import { AuthModule } from './auth/auth.module';
 import { AvaliacaoModule } from './avaliacao/avaliacao/avaliacao.module';
+import { FilmesModule } from './filmes/filmes.module';
 
 @Module({
-  imports: [UsuarioModule, AuthModule, AvaliacaoModule],
+  imports: [UsuarioModule, AuthModule, AvaliacaoModule, FilmesModule],
   controllers: [AppController],
   providers: [AppService, PrismaService], 
 })

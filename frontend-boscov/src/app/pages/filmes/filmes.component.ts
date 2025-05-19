@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
-import { MenuComponent } from '../../shared/components/menu/menu.component';
+import { Component, OnInit } from '@angular/core';import { Filme } from '../../shared/models/filme.model';
+import { FilmeService } from '../../shared/models/filme.service';
+;
 
 @Component({
-  selector: 'app-filmes',
-  imports: [MenuComponent],
+  selector: 'app-todos-filmes',
   templateUrl: './filmes.component.html',
-  styleUrl: './filmes.component.css'
+  styleUrls: ['./filmes.component.css']
 })
-export class FilmesComponent {
+export class TodosFilmesComponent implements OnInit {
+  filmes: Filme[] = [];
+  carregando = true;
+  erro = '';
 
+  constructor(private filmeService: FilmeService) {}
+
+  ngOnInit(): void {
+    this.filmeService.listarTodos().subscribe({
+      next: (dados) => {
+        this.filmes = dados;
+        this.carregando = false;
+      },
+      error: (err) => {
+        this.erro = 'Erro ao carregar filmes';
+        this.carregando = false;
+        console.error(err);
+      }
+    });
+  }
 }

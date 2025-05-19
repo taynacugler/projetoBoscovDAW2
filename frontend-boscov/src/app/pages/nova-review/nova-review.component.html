@@ -1,4 +1,28 @@
 <app-menu></app-menu>
-<div style="margin-top: 70px;">
-<p>nova review works!</p>
+
+<div style="padding-top: 70px;"> <!-- Espaço para o menu fixo -->
+  <app-window-box title="Nova Avaliação">
+    <app-filme-list
+      [filmes]="filmes"
+      (filmeSelecionado)="onFilmeSelecionado($event)">
+    </app-filme-list>
+    <div *ngIf="filmeSelecionado" style="margin-top: 20px;">
+      <h3>Filme: {{ filmeSelecionado?.nome }}</h3>
+
+
+      <app-avaliacao-stars
+        [nota]="nota"
+        (notaChange)="nota = $event">
+      </app-avaliacao-stars>
+
+      <app-avaliacao-text
+        [comentario]="comentario"
+        (comentarioChange)="comentario = $event">
+      </app-avaliacao-text>
+
+
+      <button (click)="enviarAvaliacao()" style="margin-top: 10px;">Enviar Avaliação</button>
+    </div>
+
+  </app-window-box>
 </div>

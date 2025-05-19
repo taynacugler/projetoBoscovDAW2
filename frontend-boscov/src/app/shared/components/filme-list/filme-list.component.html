@@ -1,0 +1,6 @@
+<select (change)="onChange($event)">
+  <option value="" disabled selected>Selecione um filme</option>
+  <option *ngFor="let filme of filmes" [value]="filme.id">
+    {{ filme.nome }}
+  </option>
+</select>
