@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';import { Filme } from '../../shared/models/filme.model';
 import { FilmeService } from '../../shared/models/filme.service';
+import { CommonModule } from '@angular/common';
+import { MenuComponent } from '../../shared/components/menu/menu.component';
+
 ;
 
 @Component({
-  selector: 'app-todos-filmes',
+  selector: 'app-filmes',
+  imports: [MenuComponent, CommonModule],
   templateUrl: './filmes.component.html',
   styleUrls: ['./filmes.component.css']
 })
-export class TodosFilmesComponent implements OnInit {
+export class FilmesComponent implements OnInit {
   filmes: Filme[] = [];
   carregando = true;
   erro = '';

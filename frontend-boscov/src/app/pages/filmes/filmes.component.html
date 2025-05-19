@@ -1,3 +1,5 @@
+<app-menu></app-menu>
+<div style="margin-top: 70px;">
 <div *ngIf="carregando">Carregando filmes...</div>
 <div *ngIf="erro" style="color:red">{{ erro }}</div>
 
@@ -17,4 +19,6 @@
       <p><strong>Classificação:</strong> {{ filme.classificacao }}</p>
     </div>
   </div>
+</div>
+
 </div>

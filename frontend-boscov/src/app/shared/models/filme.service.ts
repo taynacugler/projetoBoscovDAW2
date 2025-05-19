@@ -2,12 +2,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Filme } from './filme.model'; // ajuste o caminho conforme necessário
+import { Filme } from './filme.model'; 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmeService {
-  private baseUrl = 'http://localhost:3000/filmes'; // ajuste sua URL
+  private baseUrl = 'http://localhost:3000/filmes'; 
 
   constructor(private http: HttpClient) {}
 

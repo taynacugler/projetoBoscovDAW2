@@ -12,7 +12,7 @@ import { MenuComponent } from './app/shared/components/menu/menu.component';
 import { InputComponent } from './app/shared/components/input/input.component';
 import { ButtonComponent } from './app/shared/components/button/button.component';
 import { WindowBoxComponent } from './app/shared/window-box/window-box.component';
-import { TodosFilmesComponent } from './app/pages/filmes/filmes.component';
+import { FilmesComponent } from './app/pages/filmes/filmes.component';
 
 
 
@@ -27,7 +27,7 @@ import { TodosFilmesComponent } from './app/pages/filmes/filmes.component';
     InputComponent,
     ButtonComponent,
     WindowBoxComponent,
-    TodosFilmesComponent,
+    FilmesComponent,
     // declare aqui outros componentes da raiz, se tiver
   ],
   imports: [
