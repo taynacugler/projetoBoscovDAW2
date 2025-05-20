@@ -1,8 +1,9 @@
-<!-- avaliacao-stars.component.html -->
 <div>
-  <span *ngFor="let estrela of estrelas" (click)="setNota(estrela)" 
-        [style.color]="estrela <= nota ? 'gold' : 'gray'" 
-        style="font-size: 24px; cursor: pointer;">
+  <span *ngFor="let estrela of estrelas" 
+        (click)="setNota(estrela)"
+        [style.color]="estrela <= nota ? 'gold' : 'gray'"
+        [style.cursor]="readonly ? 'default' : 'pointer'"
+        style="font-size: 24px;">
     &#9733; <!-- estrela unicode -->
   </span>
 </div>

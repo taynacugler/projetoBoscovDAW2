@@ -1,4 +1,15 @@
 <app-menu></app-menu>
-<div style="margin-top: 70px;">
-<p>perfil works!</p>
+
+<div style="margin-top: 70px; display: flex; flex-direction: column; gap: 20px;" *ngIf="(avaliacoes?.length || 0) > 0; else semAvaliacoes">
+  <ng-container *ngFor="let avaliacao of avaliacoes">
+    <app-window-box [title]="'Avaliação de ' + (avaliacao.filme?.nome || 'Filme desconhecido')">
+      <p>{{ avaliacao.comentario }}</p>
+      <!-- Componente de estrelas para mostrar a nota -->
+<app-avaliacao-stars [nota]="avaliacao.nota" [readonly]="true"></app-avaliacao-stars>
+    </app-window-box>
+  </ng-container>
 </div>
+
+<ng-template #semAvaliacoes>
+  <p style="margin-top: 70px; text-align: center;">Nenhuma avaliação encontrada.</p>
+</ng-template>

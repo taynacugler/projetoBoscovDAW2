@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';import { Filme } from '../../s
 import { FilmeService } from '../../shared/models/filme.service';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../shared/components/menu/menu.component';
+import { WindowBoxComponent } from '../../shared/window-box/window-box.component';
 
 ;
 
 @Component({
   selector: 'app-filmes',
-  imports: [MenuComponent, CommonModule],
+  imports: [MenuComponent, CommonModule,WindowBoxComponent],
   templateUrl: './filmes.component.html',
   styleUrls: ['./filmes.component.css']
 })

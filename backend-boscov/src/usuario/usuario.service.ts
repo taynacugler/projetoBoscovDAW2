@@ -25,12 +25,30 @@ export class UsuarioService {
       where: { deletedAt: null }, // ignora usuários "deletados"
     });
   }
+async findAvaliacoesByUsuario(idUsuario: number) {
+  return this.prisma.avaliacao.findMany({
+    where: {
+      idUsuario,
+      deletedAt: null,
+    },
+    include: {
+      filme: true, // ou false, dependendo do que quiser
+    },
+  });
+}
 
-  async findOne(id: string) {
-    return this.prisma.usuario.findUnique({
-      where: { id: Number(id) },
-    });
+ async findOne(id: string) {
+  const numericId = Number(id);
+
+  if (!id || isNaN(numericId)) {
+    throw new Error('ID inválido');
   }
+
+  return this.prisma.usuario.findUnique({
+    where: { id: numericId },
+  });
+}
+
 
   async update(id: string, updateUsuarioDto: UpdateUsuarioDto) {
     // Atualiza o usuário sem alterar tipoUsuario

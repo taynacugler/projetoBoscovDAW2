@@ -6,6 +6,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class AvaliacaoService {
   constructor(private prisma: PrismaService) {}
 
+  // Cria uma nova avaliação para o usuário logado
   create(idUsuario: number, dto: CreateAvaliacaoDto) {
     return this.prisma.avaliacao.create({
       data: {
@@ -17,21 +18,30 @@ export class AvaliacaoService {
     });
   }
 
-  findAll() {
-    return this.prisma.avaliacao.findMany({ where: { deletedAt: null } });
-  }
+  // Retorna todas as avaliações do usuário logado
 
-  findOne(idUsuario: number, idFilme: number) {
-    return this.prisma.avaliacao.findUnique({
+  // Retorna todas as avaliações (de todos os usuários)
+  findAll() {
+    return this.prisma.avaliacao.findMany({
       where: {
-        idUsuario_idFilme: {
-          idUsuario,
-          idFilme,
-        },
+        deletedAt: null,
       },
     });
   }
 
+  // Retorna uma avaliação específica do usuário para um filme
+ findOne(idUsuario: number, idFilme: number) {
+  return this.prisma.avaliacao.findUnique({
+    where: {
+      idUsuario_idFilme: {
+        idUsuario: Number(idUsuario),
+        idFilme: Number(idFilme),
+      },
+    },
+  });
+}
+
+  // Atualiza a nota/comentário de uma avaliação existente
   update(idUsuario: number, idFilme: number, dto: CreateAvaliacaoDto) {
     return this.prisma.avaliacao.update({
       where: {
@@ -47,6 +57,7 @@ export class AvaliacaoService {
     });
   }
 
+  // Remove (soft delete) uma avaliação
   remove(idUsuario: number, idFilme: number) {
     return this.prisma.avaliacao.update({
       where: {

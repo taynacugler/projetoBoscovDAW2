@@ -1,24 +1,24 @@
 <app-menu></app-menu>
 <div style="margin-top: 70px;">
-<div *ngIf="carregando">Carregando filmes...</div>
-<div *ngIf="erro" style="color:red">{{ erro }}</div>
+  <div *ngIf="carregando">Carregando filmes...</div>
+  <div *ngIf="erro" style="color:red">{{ erro }}</div>
 
-<div *ngIf="!carregando && !erro && filmes.length === 0">
-  Nenhum filme encontrado.
-</div>
-
-<div *ngIf="!carregando && filmes.length > 0" class="lista-filmes">
-  <div *ngFor="let filme of filmes" class="filme-item" style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; display: flex;">
-    <img [src]="filme.poster" alt="{{ filme.nome }}" width="100" style="margin-right: 15px;">
-    <div>
-      <h3>{{ filme.nome }}</h3>
-      <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
-      <p><strong>Ano:</strong> {{ filme.anoLancamento }}</p>
-      <p><strong>Duração:</strong> {{ filme.duracao }} min</p>
-      <p><strong>Produtora:</strong> {{ filme.produtora }}</p>
-      <p><strong>Classificação:</strong> {{ filme.classificacao }}</p>
-    </div>
+  <div *ngIf="!carregando && !erro && filmes.length === 0">
+    Nenhum filme encontrado.
   </div>
-</div>
 
+  <div *ngIf="!carregando && filmes.length > 0" class="lista-filmes">
+    <app-window-box *ngFor="let filme of filmes" [title]="filme.nome" 
+      style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; display: flex; align-items: center;">
+      
+      <img [src]="filme.poster" alt="{{ filme.nome }}" width="100" style="margin-right: 15px;">
+      <div>
+        <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
+        <p><strong>Ano:</strong> {{ filme.anoLancamento }}</p>
+        <p><strong>Duração:</strong> {{ filme.duracao }} min</p>
+        <p><strong>Produtora:</strong> {{ filme.produtora }}</p>
+        <p><strong>Classificação:</strong> {{ filme.classificacao }}</p>
+      </div>
+    </app-window-box>
+  </div>
 </div>
