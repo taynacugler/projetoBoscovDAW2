@@ -27,7 +27,6 @@ export class LoginComponent {
     });
   }
 
-  // Getters para facilitar acesso no template
   get email(): FormControl {
     return this.form.get('email') as FormControl;
   }
@@ -46,12 +45,11 @@ export class LoginComponent {
       this.authService.login(credentials).subscribe({
         next: (res: { token: string; user: any; }) => {
           console.log('Usuário autenticado com sucesso:', res);
-          // Salvar token no localStorage (opcional)
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
 
           alert('Login realizado com sucesso!');
-          this.router.navigate(['/perfil']); // ou a rota desejada após login
+          this.router.navigate(['/perfil']); 
         },
         error: (err: any) => {
           console.error('Erro ao autenticar:', err);

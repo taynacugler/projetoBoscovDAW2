@@ -24,7 +24,6 @@ export class UsuarioController {
     return this.usuarioService.findOne(id);
   }
 
-  // GET /usuario/:id/avaliacoes
 @Get(':id/avaliacoes')
 getAvaliacoesDoUsuario(@Param('id', ParseIntPipe) id: number) {
   return this.usuarioService.findAvaliacoesByUsuario(id);

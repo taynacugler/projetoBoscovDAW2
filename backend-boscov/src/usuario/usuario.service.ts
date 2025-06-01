@@ -22,7 +22,7 @@ export class UsuarioService {
 
   async findAll() {
     return this.prisma.usuario.findMany({
-      where: { deletedAt: null }, // ignora usuários "deletados"
+      where: { deletedAt: null }, 
     });
   }
 async findAvaliacoesByUsuario(idUsuario: number) {
@@ -32,7 +32,7 @@ async findAvaliacoesByUsuario(idUsuario: number) {
       deletedAt: null,
     },
     include: {
-      filme: true, // ou false, dependendo do que quiser
+      filme: true, 
     },
   });
 }
@@ -51,7 +51,6 @@ async findAvaliacoesByUsuario(idUsuario: number) {
 
 
   async update(id: string, updateUsuarioDto: UpdateUsuarioDto) {
-    // Atualiza o usuário sem alterar tipoUsuario
     return this.prisma.usuario.update({
       where: { id: Number(id) },
       data: {

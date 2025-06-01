@@ -28,13 +28,12 @@ import { FilmesComponent } from './app/pages/filmes/filmes.component';
     ButtonComponent,
     WindowBoxComponent,
     FilmesComponent,
-    // declare aqui outros componentes da raiz, se tiver
-  ],
+    ],
   imports: [
     BrowserModule,
-    HttpClientModule,  // para o HttpClient funcionar
+    HttpClientModule, 
     SharedModule,  
-    FormsModule    // se precisar importar seu SharedModule
+    FormsModule   
   ],
   providers: [],
   bootstrap: [AppComponent]

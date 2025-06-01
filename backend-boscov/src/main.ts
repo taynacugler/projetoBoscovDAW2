@@ -7,19 +7,19 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Configurar CORS — ajuste o origin conforme o domínio do seu frontend
+
   app.enableCors({
-    origin: 'http://localhost:4200', // URL do seu frontend Angular
+    origin: 'http://localhost:4200', 
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    credentials: true, // caso use cookies/autenticação via cookies
+    credentials: true, 
   });
 
   // Configuração do Swagger
   const config = new DocumentBuilder()
-    .setTitle('API Example') // Título da API
-    .setDescription('The API description') // Descrição da API
-    .setVersion('1.0') // Versão da API
-    .addTag('users') // Adiciona uma tag para categorizar as rotas
+    .setTitle('Boscov API')
+    .setDescription('A aplicação é um sistema de gerenciamento de filmes e avaliações') 
+    .setVersion('1.0') 
+    .addTag('users') 
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
