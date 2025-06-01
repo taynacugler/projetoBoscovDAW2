@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
 import { environment } from '../enviroments/enviroment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,11 +20,17 @@ export class AuthService {
   get isLoggedIn$(): Observable<boolean> {
     return this.isLoggedInSubject.asObservable();
   }
+  getUserType(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
 
- register(dados: any) {
-  return this.http.post('http://localhost:3000/auth/register', dados);
-}
+    const decoded: any = jwt_decode(token);
+    return decoded.tipoUsuario || null;
+  }
 
+  register(dados: any) {
+    return this.http.post('http://localhost:3000/auth/register', dados);
+  }
 
   login(credentials: { email: string; senha: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, credentials).pipe(
@@ -50,3 +57,14 @@ export class AuthService {
     return user ? JSON.parse(user) : null;
   }
 }
+
+function jwt_decode(token: string): any {
+  try {
+    const payload = token.split('.')[1];
+    const decoded = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
+    return JSON.parse(decodeURIComponent(escape(decoded)));
+  } catch (e) {
+    return null;
+  }
+}
+

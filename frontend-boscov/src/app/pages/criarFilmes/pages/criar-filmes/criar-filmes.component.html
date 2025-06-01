@@ -1,0 +1,26 @@
+<h2>Criar Filme</h2>
+
+<form (ngSubmit)="onSubmit()" #filmeForm="ngForm">
+  <label>Nome:</label>
+  <input type="text" name="nome" [(ngModel)]="filme.nome" required />
+
+  <label>Diretor:</label>
+  <input type="text" name="diretor" [(ngModel)]="filme.diretor" required />
+
+  <label>Ano de Lançamento:</label>
+  <input type="number" name="anoLancamento" [(ngModel)]="filme.anoLancamento" required />
+
+  <label>Duração (min):</label>
+  <input type="number" name="duracao" [(ngModel)]="filme.duracao" required />
+
+  <label>Produtora:</label>
+  <input type="text" name="produtora" [(ngModel)]="filme.produtora" required />
+
+  <label>Classificação:</label>
+  <input type="text" name="classificacao" [(ngModel)]="filme.classificacao" required />
+
+  <label>Poster (URL):</label>
+  <input type="text" name="poster" [(ngModel)]="filme.poster" required />
+
+  <button type="submit" [disabled]="!filmeForm.form.valid">Criar Filme</button>
+</form>

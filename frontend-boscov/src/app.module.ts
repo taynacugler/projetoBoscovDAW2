@@ -13,6 +13,7 @@ import { InputComponent } from './app/shared/components/input/input.component';
 import { ButtonComponent } from './app/shared/components/button/button.component';
 import { WindowBoxComponent } from './app/shared/window-box/window-box.component';
 import { FilmesComponent } from './app/pages/filmes/filmes.component';
+import { CriarFilmesComponent } from './app/pages/criarFilmes/pages/criar-filmes/criar-filmes.component';
 
 
 
@@ -28,6 +29,7 @@ import { FilmesComponent } from './app/pages/filmes/filmes.component';
     ButtonComponent,
     WindowBoxComponent,
     FilmesComponent,
+    CriarFilmesComponent
     ],
   imports: [
     BrowserModule,

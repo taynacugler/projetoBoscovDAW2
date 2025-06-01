@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';import { Filme } from '../../shared/models/filme.model';
+import { Component, OnInit } from '@angular/core';
+import { Filme } from '../../shared/models/filme.model';
 import { FilmeService } from '../../shared/models/filme.service';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../shared/components/menu/menu.component';
 import { WindowBoxComponent } from '../../shared/window-box/window-box.component';
-
-;
-
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-filmes',
-  imports: [MenuComponent, CommonModule,WindowBoxComponent],
+  imports: [MenuComponent, CommonModule, WindowBoxComponent, FormsModule],
   templateUrl: './filmes.component.html',
-  styleUrls: ['./filmes.component.css']
+  styleUrls: ['./filmes.component.css'],
 })
 export class FilmesComponent implements OnInit {
   filmes: Filme[] = [];
@@ -29,7 +29,7 @@ export class FilmesComponent implements OnInit {
         this.erro = 'Erro ao carregar filmes';
         this.carregando = false;
         console.error(err);
-      }
+      },
     });
   }
 }

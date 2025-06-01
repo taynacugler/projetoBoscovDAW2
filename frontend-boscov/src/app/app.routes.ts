@@ -5,13 +5,21 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { NovaAvaliacaoComponent } from './pages/nova-review/nova-review.component';
 import { FilmesComponent } from './pages/filmes/filmes.component';
 import { AuthGuard } from '../auth.guard';
-
+import { CriarFilmesComponent } from './pages/criarFilmes/pages/criar-filmes/criar-filmes.component';
+import { AdminGuard } from '../admin.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'perfil', component: PerfilComponent },
-  { path: 'nova-review', component: NovaAvaliacaoComponent, canActivate: [AuthGuard]},
-  { path: 'filmes', component: FilmesComponent },
+
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] }, // protegido
+
+  { path: 'nova-review', component: NovaAvaliacaoComponent, canActivate: [AuthGuard] },
+
+  { path: 'filmes', component: FilmesComponent}, 
+
+  { path: 'criar-filmes', component: CriarFilmesComponent, canActivate: [AdminGuard] }, // nova rota protegida
+
   { path: 'login', component: LoginComponent },
+
   { path: 'cadastro', component: CadastroComponent },
 ];
