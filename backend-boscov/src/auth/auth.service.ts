@@ -38,23 +38,24 @@ export class AuthService {
   }
 
   async login(credentials: { email: string; senha: string }) {
-    const user = await this.validateUser(credentials.email, credentials.senha);
+  const user = await this.validateUser(credentials.email, credentials.senha);
 
-    const payload = { sub: user.id, email: user.email };
+  const payload = { sub: user.id, email: user.email, tipoUsuario: user.tipoUsuario };
 
-    const token = this.jwtService.sign(payload);
+  const token = this.jwtService.sign(payload);
 
-    return {
-      message: 'Login realizado com sucesso!',
-      token,
-      user: {
-        id: user.id,
-        nome: user.nome,
-        email: user.email,
-        username: user.username,
-        tipoUsuario: user.tipoUsuario,
-        status: user.status,
-      },
-    };
-  }
+  return {
+    message: 'Login realizado com sucesso!',
+    token,
+    user: {
+      id: user.id,
+      nome: user.nome,
+      email: user.email,
+      username: user.username,
+      tipoUsuario: user.tipoUsuario,
+      status: user.status,
+    },
+  };
+}
+
 }

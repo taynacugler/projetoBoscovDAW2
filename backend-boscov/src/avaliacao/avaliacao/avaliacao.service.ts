@@ -6,7 +6,6 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class AvaliacaoService {
   constructor(private prisma: PrismaService) {}
 
-  // Cria uma nova avaliação para o usuário logado
   create(idUsuario: number, dto: CreateAvaliacaoDto) {
     return this.prisma.avaliacao.create({
       data: {
@@ -18,9 +17,6 @@ export class AvaliacaoService {
     });
   }
 
-  // Retorna todas as avaliações do usuário logado
-
-  // Retorna todas as avaliações (de todos os usuários)
   findAll() {
     return this.prisma.avaliacao.findMany({
       where: {
@@ -29,7 +25,6 @@ export class AvaliacaoService {
     });
   }
 
-  // Retorna uma avaliação específica do usuário para um filme
  findOne(idUsuario: number, idFilme: number) {
   return this.prisma.avaliacao.findUnique({
     where: {
@@ -41,7 +36,6 @@ export class AvaliacaoService {
   });
 }
 
-  // Atualiza a nota/comentário de uma avaliação existente
   update(idUsuario: number, idFilme: number, dto: CreateAvaliacaoDto) {
     return this.prisma.avaliacao.update({
       where: {
