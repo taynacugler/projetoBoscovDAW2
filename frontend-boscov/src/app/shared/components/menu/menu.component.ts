@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-  constructor(private router: Router) {}
+ constructor(private router: Router, private auth: AuthService) {}
 
   navegarParaPerfil() {
     this.router.navigate(['/perfil']);
@@ -23,6 +24,7 @@ export class MenuComponent {
 
 
   sair() {
+    this.auth.logout();
     this.router.navigate(['/login']);
   }
 }
