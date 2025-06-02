@@ -1,15 +1,25 @@
 <app-menu></app-menu>
 
-<div style="margin-top: 70px; display: flex; flex-direction: column; gap: 20px;" *ngIf="(avaliacoes?.length || 0) > 0; else semAvaliacoes">
-  <ng-container *ngFor="let avaliacao of avaliacoes">
-    <app-window-box [title]="'Avaliação de ' + (avaliacao.filme?.nome || 'Filme desconhecido')">
-      <p>{{ avaliacao.comentario }}</p>
-      <!-- Componente de estrelas para mostrar a nota -->
-<app-avaliacao-stars [nota]="avaliacao.nota" [readonly]="true"></app-avaliacao-stars>
-    </app-window-box>
-  </ng-container>
-</div>
+<!-- Espaço geral entre menu e conteúdo -->
+<div style="margin-top: 100px; display: flex; flex-direction: column; gap: 30px;">
 
-<ng-template #semAvaliacoes>
-  <p style="margin-top: 70px; text-align: center;">Nenhuma avaliação encontrada.</p>
-</ng-template>
+  <!-- Botão de admin -->
+<app-button *ngIf="tipoUsuario === 'ADM'" label="Cadastrar Filme" (click)="acaoAdmin()"></app-button>
+
+
+  <!-- Avaliações -->
+  <div *ngIf="(avaliacoes?.length || 0) > 0; else semAvaliacoes" style="display: flex; flex-direction: column; gap: 20px;">
+    <ng-container *ngFor="let avaliacao of avaliacoes">
+      <app-window-box [title]="'Avaliação de ' + (avaliacao.filme?.nome || 'Filme desconhecido')">
+        <p>{{ avaliacao.comentario }}</p>
+        <app-avaliacao-stars [nota]="avaliacao.nota" [readonly]="true"></app-avaliacao-stars>
+      </app-window-box>
+    </ng-container>
+  </div>
+
+  <!-- Caso não haja avaliações -->
+  <ng-template #semAvaliacoes>
+    <p style="text-align: center;">Nenhuma avaliação encontrada.</p>
+  </ng-template>
+
+</div>

@@ -6,43 +6,50 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../enviroments/enviroment';
 import { AuthService } from '../../../services/auth.service';
 import { AvaliacaoStarsComponent } from '../../shared/components/avaliacao-stars/avaliacao-stars.component';
-
+import { ButtonComponent } from '../../shared/components/button/button.component';
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [MenuComponent, CommonModule, WindowBoxComponent, AvaliacaoStarsComponent],
+  imports: [MenuComponent, CommonModule, WindowBoxComponent, AvaliacaoStarsComponent, ButtonComponent],
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
   avaliacoes: any[] = [];
+  tipoUsuario: string = '';
   private baseUrl = environment.baseUrl;
 
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
 
-ngOnInit() {
-  console.log('Iniciando ngOnInit do PerfilComponent...');
-  
-  const user = this.authService.getUser();
-  console.log('Usuário recuperado do AuthService:', user);
+  ngOnInit() {
+    console.log('Iniciando ngOnInit do PerfilComponent...');
+    
 
-  if (user && user.id) {
-    const idUsuario = user.id;
-    const url = `http://localhost:3000/usuario/${idUsuario}/avaliacoes`;
-    console.log(`Buscando avaliações na URL: ${url}`);
+    const user = this.authService.getUser();
+    console.log('Usuário recuperado do AuthService:', user);
 
-    this.http.get<any[]>(url).subscribe({
-      next: (res) => {
-        console.log('Avaliações recebidas da API:', res);
-        this.avaliacoes = res;
-      },
-      error: (err) => {
-        console.error('Erro ao buscar avaliações:', err);
-      }
-    });
-  } else {
-    console.warn('Usuário não encontrado ou não logado');
+    if (user && user.id) {
+      const idUsuario = user.id;
+      this.tipoUsuario = user.tipoUsuario;
+      const url = `http://localhost:3000/usuario/${idUsuario}/avaliacoes`;
+      console.log(`Buscando avaliações na URL: ${url}`);
+
+      this.http.get<any[]>(url).subscribe({
+        next: (res) => {
+          console.log('Avaliações recebidas da API:', res);
+          this.avaliacoes = res;
+        },
+        error: (err) => {
+          console.error('Erro ao buscar avaliações:', err);
+        }
+      });
+    } else {
+      console.warn('Usuário não encontrado ou não logado');
+    }
   }
-}
 
+  acaoAdmin() {
+    this.router.navigateByUrl('/criar-filmes');
+  }
 }

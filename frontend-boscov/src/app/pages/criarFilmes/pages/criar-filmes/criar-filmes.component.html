@@ -1,26 +1,18 @@
-<h2>Criar Filme</h2>
+<app-menu></app-menu>
 
-<form (ngSubmit)="onSubmit()" #filmeForm="ngForm">
-  <label>Nome:</label>
-  <input type="text" name="nome" [(ngModel)]="filme.nome" required />
+<app-window-box title="Criar Filme">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <label>Diretor:</label>
-  <input type="text" name="diretor" [(ngModel)]="filme.diretor" required />
+  <app-input label="Nome" [formControl]="nome" type="text"></app-input>
+  <app-input label="Diretor" [formControl]="diretor" type="text"></app-input>
+  <app-input label="Ano de Lançamento" [formControl]="anoLancamento" type="number"></app-input>
+  <app-input label="Duração (min)" [formControl]="duracao" type="number"></app-input>
+  <app-input label="Produtora" [formControl]="produtora" type="text"></app-input>
+  <app-input label="Classificação" [formControl]="classificacao" type="text"></app-input>
+  <app-input label="Poster (URL)" [formControl]="poster" type="url"></app-input>
 
-  <label>Ano de Lançamento:</label>
-  <input type="number" name="anoLancamento" [(ngModel)]="filme.anoLancamento" required />
-
-  <label>Duração (min):</label>
-  <input type="number" name="duracao" [(ngModel)]="filme.duracao" required />
-
-  <label>Produtora:</label>
-  <input type="text" name="produtora" [(ngModel)]="filme.produtora" required />
-
-  <label>Classificação:</label>
-  <input type="text" name="classificacao" [(ngModel)]="filme.classificacao" required />
-
-  <label>Poster (URL):</label>
-  <input type="text" name="poster" [(ngModel)]="filme.poster" required />
-
-  <button type="submit" [disabled]="!filmeForm.form.valid">Criar Filme</button>
-</form>
+    <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 20px;">
+      <app-button label="Criar Filme" tipo="submit"></app-button>
+    </div>
+  </form>
+</app-window-box>
