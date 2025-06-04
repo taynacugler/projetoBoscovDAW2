@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { AppService } from './app.service';
 
-@ApiTags('app')
+@ApiTags('App')
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -10,10 +10,10 @@ export class AppController {
   @Get()
   @ApiResponse({
     status: 200,
-    description: 'Retorna uma saudação de boas-vindas.',
+    description: 'Descrição do Backend Boscov API',
     type: String, 
   })
   getHello(): string {
-    return this.appService.getHello();
+    return this.appService.Descrição();
   }
 }

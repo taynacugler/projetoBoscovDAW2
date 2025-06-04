@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
+  Descrição(): string {
     return 'Backend Boscov API';
   }
 }
