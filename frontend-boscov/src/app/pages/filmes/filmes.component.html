@@ -8,9 +8,8 @@
   </div>
 
   <div *ngIf="!carregando && filmes.length > 0" class="lista-filmes">
-    <app-window-box *ngFor="let filme of filmes" [title]="filme.nome" 
-      style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; display: flex; align-items: center;   margin-top: 50px;">
-      
+    <app-window-box *ngFor="let filme of filmesPaginados" [title]="filme.nome"
+      style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; display: flex; align-items: center; margin-top: 50px;">
       <img [src]="filme.poster" alt="{{ filme.nome }}" width="100" style="margin-right: 15px;">
       <div>
         <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
@@ -20,5 +19,12 @@
         <p><strong>Classificação:</strong> {{ filme.classificacao }}</p>
       </div>
     </app-window-box>
+
+    <!-- Paginação -->
+    <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 30px;">
+      <button (click)="voltarPagina()" [disabled]="paginaAtual === 1">Anterior</button>
+      <span>Página {{ paginaAtual }} de {{ totalPaginas }}</span>
+      <button (click)="avancarPagina()" [disabled]="paginaAtual === totalPaginas">Próxima</button>
+    </div>
   </div>
 </div>

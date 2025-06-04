@@ -17,6 +17,9 @@ export class FilmesComponent implements OnInit {
   carregando = true;
   erro = '';
 
+  paginaAtual = 1;
+  itensPorPagina = 5;
+
   constructor(private filmeService: FilmeService) {}
 
   ngOnInit(): void {
@@ -31,5 +34,27 @@ export class FilmesComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+
+  get filmesPaginados(): Filme[] {
+    const inicio = (this.paginaAtual - 1) * this.itensPorPagina;
+    const fim = inicio + this.itensPorPagina;
+    return this.filmes.slice(inicio, fim);
+  }
+
+  get totalPaginas(): number {
+    return Math.ceil(this.filmes.length / this.itensPorPagina);
+  }
+
+  avancarPagina(): void {
+    if (this.paginaAtual < this.totalPaginas) {
+      this.paginaAtual++;
+    }
+  }
+
+  voltarPagina(): void {
+    if (this.paginaAtual > 1) {
+      this.paginaAtual--;
+    }
   }
 }

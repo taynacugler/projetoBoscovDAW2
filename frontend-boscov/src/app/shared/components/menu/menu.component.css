@@ -1,7 +1,6 @@
 .menu-bar {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: rgb(246, 182, 255);
   padding: 10px 20px;
@@ -12,18 +11,31 @@
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   font-family: 'Courier New', monospace;
+  line-height: 1;
+  height: auto;
+}
+
+.menu-left,
+.menu-center,
+.menu-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-left,
 .menu-right {
-  display: flex;
-  gap: 20px;
-  
+  gap: 30px;
 }
 
 .menu-center img {
-  width: 100px;
+ width: 80px;
   height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
 }
 
 .menu-bar button {
