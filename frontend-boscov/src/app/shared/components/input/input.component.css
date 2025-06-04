@@ -4,7 +4,6 @@
   margin-bottom: 15px;
 }
 
-/* Label (se estiver usando dentro do componente) */
 label {
   display: block;
   margin-bottom: 6px;
@@ -13,7 +12,6 @@ label {
   color: #000;
 }
 
-/* Input */
 input {
   width: 100%;
   padding: 12px;
@@ -29,13 +27,11 @@ input {
   box-sizing: border-box;
 }
 
-/* Placeholder */
 input::placeholder {
   color: rgba(0, 0, 0, 0.5);
   font-style: italic;
 }
 
-/* Focus effect */
 input:focus {
   border-color: var(--c-pink, #ff1493);
   background-color: var(--c-white, #ffffff);

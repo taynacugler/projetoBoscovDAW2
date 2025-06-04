@@ -1,9 +1,7 @@
 <app-menu></app-menu>
 
-<!-- Espaço geral entre menu e conteúdo -->
 <div style="margin-top: 100px; display: flex; flex-direction: column; gap: 30px;">
 
-  <!-- Botão de admin -->
 <app-button *ngIf="tipoUsuario === 'ADM'" label="Cadastrar Filme" (click)="acaoAdmin()"></app-button>
 
 

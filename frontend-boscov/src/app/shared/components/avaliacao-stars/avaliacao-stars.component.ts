@@ -9,14 +9,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./avaliacao-stars.component.css']
 })
 export class AvaliacaoStarsComponent {
-  @Input() nota: number = 0; // nota atual
-  @Input() readonly: boolean = false; // controla se é somente leitura ou editável
+  @Input() nota: number = 0; 
+  @Input() readonly: boolean = false; 
   @Output() notaChange = new EventEmitter<number>();
 
   estrelas = [1, 2, 3, 4, 5];
 
   setNota(n: number) {
-    if (!this.readonly) { // só altera se não for readonly
+    if (!this.readonly) { 
       this.nota = n;
       this.notaChange.emit(this.nota);
     }

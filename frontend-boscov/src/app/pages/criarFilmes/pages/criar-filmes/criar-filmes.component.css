@@ -19,6 +19,10 @@
   background-blend-mode: screen, lighten;
   background-color: #222;
 }
+
+.form-container {
+  margin-top: 100px;
+}
   
   h1 {
     font-size: 2.5rem;

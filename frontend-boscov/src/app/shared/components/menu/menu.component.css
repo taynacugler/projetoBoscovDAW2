@@ -1,9 +1,10 @@
 .menu-bar {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgb(246, 182, 255);
-  padding: 10px;
+  padding: 10px 20px;
   border-bottom: 3px solid black;
   position: fixed;
   top: 0;
@@ -11,6 +12,18 @@
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   font-family: 'Courier New', monospace;
+}
+
+.menu-left,
+.menu-right {
+  display: flex;
+  gap: 20px;
+  
+}
+
+.menu-center img {
+  width: 100px;
+  height: auto;
 }
 
 .menu-bar button {

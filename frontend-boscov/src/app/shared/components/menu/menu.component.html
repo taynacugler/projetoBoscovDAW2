@@ -1,6 +1,15 @@
 <nav class="menu-bar">
-  <button (click)="navegarParaPerfil()">Perfil</button>
-  <button (click)="navegarParaNovaReview()">Nova Review</button>
-  <button (click)="navegarParaFilmes()">Filmes</button>
-  <button (click)="sair()">>Sair</button>
+  <div class="menu-left">
+    <button (click)="navegarParaPerfil()">Perfil</button>
+    <button (click)="navegarParaNovaReview()">Nova Review</button>
+  </div>
+
+  <div class="menu-center">
+   <img src="vhs.png" alt="Logo" />
+  </div>
+
+  <div class="menu-right">
+    <button (click)="navegarParaFilmes()">Filmes</button>
+    <button (click)="sair()">Sair</button>
+  </div>
 </nav>

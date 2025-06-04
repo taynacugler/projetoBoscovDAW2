@@ -1,11 +1,10 @@
-/* Button Component */
 button {
-  background-color: rgb(201, 48, 201); /* Cor de fundo */
+  background-color: rgb(201, 48, 201); 
   color: rgb(0, 0, 0);
-  font-family: 'Courier New', monospace; /* Fonte */
+  font-family: 'Courier New', monospace; 
   font-size: 1rem;
   padding: 10px 20px;
-  border: 2px solid #000000; /* Cor da borda */
+  border: 2px solid #000000; 
   border-radius: 3px;
   box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2), 2px 2px 5px rgba(0, 0, 0, 0.2);
   outline: none;
@@ -14,11 +13,11 @@ button {
 }
 
 button:hover {
-  background-color: var(--c-pink); /* Alterando cor para rosa claro no hover */
+  background-color: var(--c-pink); 
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 button:active {
-  background-color: var(--c-greenish); /* Cor ao clicar */
+  background-color: var(--c-greenish); 
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6), 1px 1px 5px rgba(0, 0, 0, 0.5);
 }

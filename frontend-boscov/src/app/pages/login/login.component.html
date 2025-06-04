@@ -1,16 +1,29 @@
-<app-window-box title="LOGIN">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div style="
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 60px;
+  gap: 15px;
+">
 
-    <app-input label="Email" [formControl]="email" type="email"></app-input>
-    <app-input label="Senha" [formControl]="senha" type="password"></app-input>
+  <img src="BOSCOV.png" width="200" alt="Logo" style="display: flex; padding-top: 40px"/>
 
-    <div style="margin-top: 20px;">
-      <app-button label="Entrar" tipo="submit" (click)="onSubmit()"></app-button>
-    </div>
+  <app-window-box title="LOGIN">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <app-input label="Email" [formControl]="email" type="email"></app-input>
+      <app-input label="Senha" [formControl]="senha" type="password"></app-input>
 
-  </form>
+      <div style="
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: center; 
+        align-items: center;">
+        <app-button label="Entrar" tipo="submit" (click)="onSubmit()"></app-button>
+        <app-button label="Ir para Cadastro" (click)="irParaCadastro()"></app-button>
+      </div>
+    </form>
+  </app-window-box>
 
-  <div style="margin-top: 15px;">
-    <app-button label="Ir para Cadastro" (click)="irParaCadastro()"></app-button>
-  </div>
-</app-window-box>
+</div>

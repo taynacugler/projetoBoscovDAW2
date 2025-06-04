@@ -11,13 +11,13 @@ import { AdminGuard } from '../admin.guard';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] }, // protegido
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
 
   { path: 'nova-review', component: NovaAvaliacaoComponent, canActivate: [AuthGuard] },
 
-  { path: 'filmes', component: FilmesComponent}, 
+  { path: 'filmes', component: FilmesComponent, canActivate: [AuthGuard]}, 
 
-  { path: 'criar-filmes', component: CriarFilmesComponent, canActivate: [AdminGuard] }, // nova rota protegida
+  { path: 'criar-filmes', component: CriarFilmesComponent, canActivate: [AdminGuard] }, 
 
   { path: 'login', component: LoginComponent },
 

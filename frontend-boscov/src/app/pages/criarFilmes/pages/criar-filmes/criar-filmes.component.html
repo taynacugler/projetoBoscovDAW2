@@ -1,6 +1,6 @@
 <app-menu></app-menu>
 
-<app-window-box title="Criar Filme">
+<app-window-box title="Criar Filme" class="form-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
   <app-input label="Nome" [formControl]="nome" type="text"></app-input>

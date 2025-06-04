@@ -32,7 +32,6 @@ export class CriarFilmesComponent {
     this.router = this._router;
   }
 
-  // Getters para facilitar no template
   get nome() { return this.form.get('nome') as FormControl; }
   get diretor() { return this.form.get('diretor') as FormControl; }
   get anoLancamento() { return this.form.get('anoLancamento') as FormControl; }
@@ -41,7 +40,6 @@ export class CriarFilmesComponent {
   get classificacao() { return this.form.get('classificacao') as FormControl; }
   get poster() { return this.form.get('poster') as FormControl; }
 
-  // Método para submeter o formulário, por exemplo
  onSubmit() {
   if (this.form.valid) {
     const formData = {

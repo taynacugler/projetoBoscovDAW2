@@ -1,3 +1,26 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Courier New', monospace;
+  color: #000000;
+
+  background: 
+    radial-gradient(circle at 20% 30%, #ff66c4, transparent 25%),
+    radial-gradient(circle at 80% 20%, #2600ff, transparent 30%),
+    radial-gradient(circle at 50% 80%, #8a2be2, transparent 40%),
+    radial-gradient(circle at 70% 70%, #00ffff, transparent 35%),
+    radial-gradient(circle at 30% 70%, #ffcc00, transparent 45%),
+    
+    conic-gradient(from 90deg, #ff1493, #00ffff, #00ffc8, #ff1493);
+
+  background-blend-mode: screen, lighten;
+  background-color: #222;
+}
+
 .avaliacao-box {
-  margin-bottom: 20px; /* Espaço entre avaliações */
+  margin-bottom: 20px; 
 }
