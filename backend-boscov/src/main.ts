@@ -14,7 +14,6 @@ async function bootstrap() {
     credentials: true, 
   });
 
-  // Configuração do Swagger
   const config = new DocumentBuilder()
     .setTitle('Boscov API')
     .setDescription('A aplicação é um sistema de gerenciamento de filmes e avaliações') 

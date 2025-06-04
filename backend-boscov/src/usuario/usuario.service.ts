@@ -1,4 +1,3 @@
-// usuario.service.ts
 
 import { Injectable } from '@nestjs/common';
 import { CreateUsuarioDto, UpdateUsuarioDto } from './dto/usuario.dto/usuario.dto';

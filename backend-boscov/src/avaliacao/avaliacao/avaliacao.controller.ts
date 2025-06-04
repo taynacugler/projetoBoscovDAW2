@@ -1,14 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Param,
-  Put,
-  Delete,
-  Req,
-  UseGuards,
-} from '@nestjs/common';
+import {Controller, Post, Body, Get, Param, Put, Delete, Req, UseGuards} from '@nestjs/common';
 import { AvaliacaoService } from './avaliacao.service';
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';

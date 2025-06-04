@@ -51,7 +51,6 @@ export class AvaliacaoService {
     });
   }
 
-  // Remove (soft delete) uma avaliação
   remove(idUsuario: number, idFilme: number) {
     return this.prisma.avaliacao.update({
       where: {

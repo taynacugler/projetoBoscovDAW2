@@ -1,5 +1,4 @@
 export class UsuarioDto {}
-// dto/usuario.dto.ts
 
 import { IsString, IsEmail, IsEnum, IsDate, IsDateString } from 'class-validator';
 
