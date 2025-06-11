@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsOptional } from 'class-validator';
+import { IsString, IsInt, IsArray, ArrayNotEmpty } from 'class-validator';
 
 export class CreateFilmeDto {
   @IsString()
@@ -22,6 +22,8 @@ export class CreateFilmeDto {
   @IsString()
   poster: string;
 
-  @IsOptional()
-  deletedAt?: Date;
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsInt({ each: true })  // garante que cada elemento do array seja inteiro
+  generosIds: number[];
 }

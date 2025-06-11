@@ -16,12 +16,12 @@ interface Filme {
 
 @Component({
   selector: 'app-nova-review',
-  standalone: true, // se estiver usando Angular 14+ e standalone components
+  standalone: true, 
   imports: [MenuComponent, CommonModule, WindowBoxComponent, AvaliacaoStarsComponent, AvaliacaoTextComponent, FilmeListComponent, ButtonComponent],
   templateUrl: './nova-review.component.html',
   styleUrls: ['./nova-review.component.css']
 })
-export class NovaAvaliacaoComponent implements OnInit {  // classe com nome alinhado ao selector e arquivo
+export class NovaAvaliacaoComponent implements OnInit {  
   filmes: Filme[] = [];
   filmeSelecionado: Filme | null = null;
   nota: number = 0;
@@ -52,7 +52,6 @@ buscarFilmes() {
 
   enviarAvaliacao() {
     if (!this.filmeSelecionado || this.nota === 0 || this.comentario.trim() === '') {
-      alert('Preencha todos os campos!');
       return;
     }
 
@@ -70,8 +69,6 @@ buscarFilmes() {
 
     this.http.post('http://localhost:3000/avaliacoes', payload, { headers })
       .subscribe({
-        next: () => alert('Avaliação enviada com sucesso!'),
-        error: err => alert('Erro ao enviar avaliação: ' + (err.message || err.statusText))
       });
   }
 }

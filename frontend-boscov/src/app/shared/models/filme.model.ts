@@ -7,7 +7,26 @@ export interface Filme {
   produtora: string;
   classificacao: string;
   poster: string;
- // deletedAt?: string; // ou Date, dependendo do formato retornado pelo backend
- // generos: GeneroFilme[]; // Você precisa definir esse tipo também
-  //avaliacoes: Avaliacao[]; // Você precisa definir esse tipo também
+  deletedAt?: string;
+  generos: GeneroFilme[]; 
+  avaliacoes: Avaliacao[];
+}
+
+export interface GeneroFilme {
+  idGenero: number;
+  idFilme: number;
+  genero: Genero; 
+}
+
+export interface Genero {
+  id: number;
+  descricao: string;
+}
+
+export interface Avaliacao {
+  idUsuario: number;
+  idFilme: number;
+  nota: number;
+  comentario: string;
+  deletedAt: string | null;
 }

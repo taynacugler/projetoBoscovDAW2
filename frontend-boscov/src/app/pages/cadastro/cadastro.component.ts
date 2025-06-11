@@ -72,12 +72,10 @@ onSubmit(): void {
     this.authService.register(dadosCadastro).subscribe({
       next: (res) => {
         console.log('Usuário cadastrado com sucesso:', res);
-        alert('Cadastro realizado com sucesso!');
         this.router.navigate(['/login']); // Redireciona para tela de login
       },
       error: (err) => {
         console.error('Erro no cadastro:', err);
-        alert('Erro ao cadastrar: ' + (err.error?.message || 'Erro desconhecido'));
       }
     });
   } else {

@@ -15,6 +15,8 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class LoginComponent {
   form: FormGroup;
+  mensagemSucesso: string | null = null;
+  mensagemErro: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -36,6 +38,9 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
+    this.mensagemErro = null;
+    this.mensagemSucesso = null;
+
     if (this.form.valid) {
       const credentials = {
         email: this.form.value.email,
@@ -44,16 +49,16 @@ export class LoginComponent {
 
       this.authService.login(credentials).subscribe({
         next: (res: { token: string; user: any; }) => {
-          console.log('Usuário autenticado com sucesso:', res);
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
 
-          alert('Login realizado com sucesso!');
-          this.router.navigate(['/perfil']); 
+          this.mensagemSucesso = 'Login realizado com sucesso!';
+          setTimeout(() => {
+            this.router.navigate(['/perfil']);
+          }, 1500);
         },
-        error: (err: any) => {
-          console.error('Erro ao autenticar:', err);
-          alert('Email ou senha incorretos.');
+        error: () => {
+          this.mensagemErro = 'Email ou senha incorretos.';
         }
       });
     } else {

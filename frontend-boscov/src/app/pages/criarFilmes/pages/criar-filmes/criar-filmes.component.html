@@ -3,13 +3,26 @@
 <app-window-box title="Criar Filme" class="form-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <app-input label="Nome" [formControl]="nome" type="text"></app-input>
-  <app-input label="Diretor" [formControl]="diretor" type="text"></app-input>
-  <app-input label="Ano de Lançamento" [formControl]="anoLancamento" type="number"></app-input>
-  <app-input label="Duração (min)" [formControl]="duracao" type="number"></app-input>
-  <app-input label="Produtora" [formControl]="produtora" type="text"></app-input>
-  <app-input label="Classificação" [formControl]="classificacao" type="text"></app-input>
-  <app-input label="Poster (URL)" [formControl]="poster" type="url"></app-input>
+    <app-input label="Nome" [formControl]="nome" type="text"></app-input>
+    <app-input label="Diretor" [formControl]="diretor" type="text"></app-input>
+    <app-input label="Ano de Lançamento" [formControl]="anoLancamento" type="number"></app-input>
+    <app-input label="Duração (min)" [formControl]="duracao" type="number"></app-input>
+    <app-input label="Produtora" [formControl]="produtora" type="text"></app-input>
+    <app-input label="Classificação" [formControl]="classificacao" type="text"></app-input>
+    <app-input label="Poster (URL)" [formControl]="poster" type="url"></app-input>
+
+    <div style="margin-top: 20px;">
+      <label><strong>Gêneros</strong></label>
+      <div *ngFor="let genero of generos" style="display: flex; align-items: center;">
+        <input
+          type="checkbox"
+          [value]="genero.id"
+          (change)="onGeneroToggle($event)"
+          [checked]="generosIds.value.includes(genero.id)"
+        />
+        <span style="margin-left: 8px;">{{ genero.descricao }}</span>
+      </div>
+    </div>
 
     <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 20px;">
       <app-button label="Criar Filme" tipo="submit"></app-button>

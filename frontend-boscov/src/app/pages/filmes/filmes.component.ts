@@ -6,8 +6,10 @@ import { MenuComponent } from '../../shared/components/menu/menu.component';
 import { WindowBoxComponent } from '../../shared/window-box/window-box.component';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-filmes',
+  standalone: true,
   imports: [MenuComponent, CommonModule, WindowBoxComponent, FormsModule],
   templateUrl: './filmes.component.html',
   styleUrls: ['./filmes.component.css'],
@@ -35,6 +37,11 @@ export class FilmesComponent implements OnInit {
       },
     });
   }
+
+  getDescricaoGeneros(filme: Filme): string {
+  return filme.generos?.map(gf => gf.genero?.descricao).join(', ') || '';
+}
+
 
   get filmesPaginados(): Filme[] {
     const inicio = (this.paginaAtual - 1) * this.itensPorPagina;
