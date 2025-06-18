@@ -18,7 +18,6 @@ export class FilmesComponent implements OnInit {
   filmes: Filme[] = [];
   carregando = true;
   erro = '';
-
   paginaAtual = 1;
   itensPorPagina = 5;
 
@@ -39,18 +38,38 @@ export class FilmesComponent implements OnInit {
   }
 
   getDescricaoGeneros(filme: Filme): string {
-  return filme.generos?.map(gf => gf.genero?.descricao).join(', ') || '';
-}
+    return filme.generos?.map(gf => gf.genero?.descricao).join(', ') || '';
+  }
 
-getMediaNotas(filme: Filme): number {
-  const avaliacoesValidas = filme.avaliacoes?.filter(a => a.deletedAt === null) || [];
-  if (avaliacoesValidas.length === 0) return 0;
+  getMediaNotas(filme: Filme): number {
+    const avaliacoesValidas = filme.avaliacoes?.filter(a => a.deletedAt === null) || [];
+    if (avaliacoesValidas.length === 0) return 0;
+    const soma = avaliacoesValidas.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
+    console.log(`Soma das notas: ${soma}, Avaliações válidas: ${avaliacoesValidas.length}`);
+    if (soma === 0) return 0;
+    return +(soma / avaliacoesValidas.length).toFixed(1);
+  }
 
-  const soma = avaliacoesValidas.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
-  console.log(`Soma das notas: ${soma}, Avaliações válidas: ${avaliacoesValidas.length}`);
-  if (soma === 0) return 0;
-  return +(soma / avaliacoesValidas.length).toFixed(1);
-}
+  // NOVOS MÉTODOS - Adicione estes
+  getRatingStars(filme: Filme): number {
+    const media = this.getMediaNotas(filme);
+    
+    // Se não houver nota válida, retorna 0
+    if (media === 0) {
+      return 0;
+    }
+    
+    // Assumindo que sua escala é 0-10, converte para 0-5 estrelas
+    return media;
+  }
+
+  mathFloor(value: number): number {
+    return Math.floor(value);
+  }
+
+  mathMin(a: number, b: number): number {
+    return Math.min(a, b);
+  }
 
   get filmesPaginados(): Filme[] {
     const inicio = (this.paginaAtual - 1) * this.itensPorPagina;

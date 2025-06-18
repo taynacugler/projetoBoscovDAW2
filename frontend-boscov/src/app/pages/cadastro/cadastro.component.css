@@ -59,8 +59,8 @@ form {
 
 .alert-success {
   background-color: rgba(76, 175, 80, 0.2);
-  border: 1px solid #4caf50;
-  color: #4caf50;
+  border: 1px solid #217924;
+  color: #217924;
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
@@ -118,12 +118,10 @@ form {
   }
 }
 
-/* Estilos para grupos de input */
 .input-group {
   position: relative;
 }
 
-/* Estilos para mensagens de erro de campo */
 .field-error {
   color: #ff6b6b;
   font-size: 12px;
@@ -140,7 +138,6 @@ form {
   font-size: 11px;
 }
 
-/* Estilos para dicas de campo */
 .field-hint {
   color: #ccc;
   font-size: 11px;

@@ -1,47 +1,118 @@
 <app-menu></app-menu>
-
-<div style="margin-top: 70px;">
-  <div *ngIf="carregando">Carregando filmes...</div>
-  <div *ngIf="erro" style="color:red">{{ erro }}</div>
-
-  <div *ngIf="!carregando && !erro && filmes.length === 0">
+<div class="container">
+  <div *ngIf="carregando" class="loading">
+    <div class="spinner"></div>
+    Carregando filmes...
+  </div>
+  
+  <div *ngIf="erro" class="error-message">{{ erro }}</div>
+  
+  <div *ngIf="!carregando && !erro && filmes.length === 0" class="no-movies">
+    <i class="icon-film"></i>
     Nenhum filme encontrado.
   </div>
-
-  <div *ngIf="!carregando && filmes.length > 0" class="lista-filmes">
+  
+  <div *ngIf="!carregando && filmes.length > 0" class="movies-grid">
     <app-window-box
       *ngFor="let filme of filmesPaginados"
       [title]="filme.nome"
-      style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; display: flex; align-items: center; margin-top: 50px;"
+      class="movie-card"
     >
-      <img
-        [src]="filme.poster"
-        alt="{{ filme.nome }}"
-        width="100"
-        style="margin-right: 15px;"
-      />
-      <div>
-        <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
-        <p><strong>Ano:</strong> {{ filme.anoLancamento }}</p>
-        <p><strong>Duração:</strong> {{ filme.duracao }} min</p>
-        <p><strong>Produtora:</strong> {{ filme.produtora }}</p>
-        <p><strong>Classificação:</strong> {{ filme.classificacao }}</p>
-        <p><strong>Gêneros:</strong> {{ getDescricaoGeneros(filme) }}</p>
-        <p><strong>Média de Avaliações:</strong> {{ getMediaNotas(filme) }}</p>
+      <div class="movie-content">
+        <div class="movie-poster">
+          <img
+            [src]="filme.poster"
+            [alt]="filme.nome"
+            onerror="this.src='assets/placeholder-movie.png'"
+          />
+        </div>
+        
+        <div class="movie-info">
+          <div class="info-row">
+            <span class="label">Diretor:</span>
+            <span class="value">{{ filme.diretor }}</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="label">Ano:</span>
+            <span class="value">{{ filme.anoLancamento }}</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="label">Duração:</span>
+            <span class="value">{{ filme.duracao }} min</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="label">Produtora:</span>
+            <span class="value">{{ filme.produtora }}</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="label">Classificação:</span>
+            <span class="value classification">{{ filme.classificacao }}</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="label">Gêneros:</span>
+            <span class="value genres">{{ getDescricaoGeneros(filme) }}</span>
+          </div>
+          
+          <div class="info-row rating-row">
+            <span class="label">Avaliação:</span>
+            <div class="star-rating">
+              <div class="stars">
+                <span 
+                  *ngFor="let star of [1,2,3,4,5]; let i = index" 
+                  class="star"
+                  [class.filled]="i < getRatingStars(filme)"
+                  [class.half]="i === mathFloor(getRatingStars(filme)) && getRatingStars(filme) % 1 !== 0"
+                >
+                  ★
+                </span>
+              </div>
+              <span class="rating-value">{{ getMediaNotas(filme) }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </app-window-box>
-
-    <!-- Paginação -->
-    <div
-      style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 30px;"
-    >
-      <button (click)="voltarPagina()" [disabled]="paginaAtual === 1">
-        Anterior
-      </button>
-      <span>Página {{ paginaAtual }} de {{ totalPaginas }}</span>
-      <button (click)="avancarPagina()" [disabled]="paginaAtual === totalPaginas">
-        Próxima
-      </button>
+    
+    <!-- Paginação Melhorada -->
+    <div class="pagination-container">
+      <div class="pagination">
+        <button 
+          class="pagination-btn prev-btn" 
+          (click)="voltarPagina()" 
+          [disabled]="paginaAtual === 1"
+          [class.disabled]="paginaAtual === 1"
+        >
+          <span class="btn-icon">‹</span>
+          <span class="btn-text">Anterior</span>
+        </button>
+        
+        <div class="page-info">
+          <span class="current-page">{{ paginaAtual }}</span>
+          <span class="page-separator">de</span>
+          <span class="total-pages">{{ totalPaginas }}</span>
+        </div>
+        
+        <button 
+          class="pagination-btn next-btn" 
+          (click)="avancarPagina()" 
+          [disabled]="paginaAtual === totalPaginas"
+          [class.disabled]="paginaAtual === totalPaginas"
+        >
+          <span class="btn-text">Próxima</span>
+          <span class="btn-icon">›</span>
+        </button>
+      </div>
+      
+      <div class="results-info">
+        Exibindo {{ (paginaAtual - 1) * itensPorPagina + 1 }} - 
+        {{ mathMin(paginaAtual * itensPorPagina, filmes.length) }} 
+        de {{ filmes.length }} filmes
+      </div>
     </div>
   </div>
 </div>

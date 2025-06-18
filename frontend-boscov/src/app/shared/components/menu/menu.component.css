@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   background-color: rgb(246, 182, 255);
-  padding: 10px 20px;
+  padding: 0 20px; /* Removido padding vertical */
   border-bottom: 3px solid black;
   position: fixed;
   top: 0;
@@ -12,7 +12,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   font-family: 'Courier New', monospace;
   line-height: 1;
-  height: auto;
+  height: 80px; /* Altura fixa igual à altura da imagem */
 }
 
 .menu-left,
@@ -22,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%; /* Ocupa toda a altura do menu */
 }
 
 .menu-left,
@@ -29,9 +30,14 @@
   gap: 30px;
 }
 
+.menu-center {
+  justify-content: center;
+}
+
 .menu-center img {
- width: 80px;
-  height: auto;
+  width: 80px;
+  height: 80px; /* Altura fixa para controlar melhor */
+  object-fit: contain; /* Mantém proporção da imagem */
   display: block;
   margin: 0;
   padding: 0;
@@ -41,14 +47,15 @@
 .menu-bar button {
   background-color: lightpink;
   border: 2px solid black;
-  padding: 10px 20px;
-  font-size: 1rem;
+  padding: 8px 16px; /* Padding reduzido para caber melhor na altura */
+  font-size: 0.9rem; /* Fonte ligeiramente menor */
   cursor: pointer;
   color: black;
   text-transform: uppercase;
   font-weight: bold;
   transition: 0.3s;
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  height: fit-content; /* Altura do botão se ajusta ao conteúdo */
 }
 
 .menu-bar button:hover {

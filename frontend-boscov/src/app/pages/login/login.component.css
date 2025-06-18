@@ -136,10 +136,10 @@ input[type="checkbox"] {
 
 .sucesso {
   background-color: rgba(0, 255, 0, 0.1);
-  color: #00ff00;
-  border: 2px solid #00ff00;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  color: #054705;
+  border: 2px solid #0f740f;
+  box-shadow: 0 0 10px rgba(15, 155, 15, 0.3);
+  text-shadow: 0 0 5px rgba(9, 107, 9, 0.5);
 }
 
 .erro {
