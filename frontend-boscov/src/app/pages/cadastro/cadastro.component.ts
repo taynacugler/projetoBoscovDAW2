@@ -233,7 +233,7 @@ export class CadastroComponent {
 
     this.limparMensagens();
 
-    // Validação completa do formulário
+ 
     if (!this.validarFormularioCompleto()) {
       return;
     }

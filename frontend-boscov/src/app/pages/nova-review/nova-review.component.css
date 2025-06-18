@@ -22,7 +22,7 @@
   margin-top: 50px;
 }
 
-/* Mensagens de erro/sucesso/warning */
+
 .message-container {
   margin-bottom: 24px;
   border-radius: 8px;
@@ -86,7 +86,7 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Loading */
+
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -115,7 +115,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Estado vazio */
+
 .empty-state {
   display: flex;
   justify-content: center;
@@ -132,7 +132,7 @@
   margin-bottom: 20px;
 }
 
-/* Formulário de avaliação */
+
 .avaliacao-form {
   margin-top: 24px;
   display: flex;
@@ -197,7 +197,7 @@
   font-weight: 500;
 }
 
-/* Ações do formulário */
+
 .form-actions {
   display: flex;
   gap: 12px;
@@ -228,7 +228,6 @@
   transform: translateY(0);
 }
 
-/* Botão desabilitado */
 .button-wrapper.button-disabled {
   opacity: 0.5;
   pointer-events: none;
@@ -244,7 +243,6 @@ app-button.sending {
   opacity: 0.8;
 }
 
-/* Hint para selecionar filme */
 .select-movie-hint {
   display: flex;
   justify-content: center;
@@ -259,7 +257,6 @@ app-button.sending {
   font-style: italic;
 }
 
-/* Animações */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -271,7 +268,6 @@ app-button.sending {
   }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .form-actions {
     flex-direction: column;
@@ -289,14 +285,13 @@ app-button.sending {
   }
 }
 
-/* Estados hover para melhor feedback */
 .form-field:has(app-avaliacao-stars:hover),
 .form-field:has(app-avaliacao-text:hover) {
   transform: translateY(-1px);
   transition: transform 0.2s ease;
 }
 
-/* Indicador visual para campos obrigatórios */
+
 .field-label::after {
   content: " *";
   color: #dc2626;

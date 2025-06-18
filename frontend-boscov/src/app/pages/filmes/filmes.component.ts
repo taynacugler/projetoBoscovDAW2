@@ -50,16 +50,14 @@ export class FilmesComponent implements OnInit {
     return +(soma / avaliacoesValidas.length).toFixed(1);
   }
 
-  // NOVOS MÉTODOS - Adicione estes
   getRatingStars(filme: Filme): number {
     const media = this.getMediaNotas(filme);
     
-    // Se não houver nota válida, retorna 0
+  
     if (media === 0) {
       return 0;
     }
     
-    // Assumindo que sua escala é 0-10, converte para 0-5 estrelas
     return media;
   }
 

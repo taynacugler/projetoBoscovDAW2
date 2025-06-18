@@ -33,11 +33,11 @@ export class NovaAvaliacaoComponent implements OnInit {
   nota: number = 0;
   comentario: string = '';
   
-  // Estados de loading
+  
   isLoadingFilmes: boolean = false;
   isEnviandoAvaliacao: boolean = false;
   
-  // Mensagens de erro/sucesso
+ 
   message: ErrorMessage = {
     show: false,
     text: '',
@@ -61,7 +61,7 @@ export class NovaAvaliacaoComponent implements OnInit {
           this.filmes = data;
           this.isLoadingFilmes = false;
           
-          // Verificar se não há filmes disponíveis
+         
           if (!data || data.length === 0) {
             this.showMessage('Nenhum filme disponível no momento.', 'warning');
           }
@@ -87,41 +87,41 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   onFilmeSelecionado(filme: Filme) {
     this.filmeSelecionado = filme;
-    this.hideMessage(); // Limpar mensagens quando selecionar novo filme
+    this.hideMessage(); 
   }
 
   private validarFormulario(): string | null {
-    // Verificar se filme foi selecionado
+    
     if (!this.filmeSelecionado) {
       return 'Por favor, selecione um filme para avaliar.';
     }
 
-    // Verificar se nota foi dada
+    
     if (this.nota === 0) {
       return 'Por favor, dê uma nota de 1 a 5 estrelas.';
     }
 
-    // Verificar se nota está no range válido
+    
     if (this.nota < 1 || this.nota > 5) {
       return 'A nota deve estar entre 1 e 5 estrelas.';
     }
 
-    // Verificar se comentário foi preenchido
+   
     if (!this.comentario || this.comentario.trim() === '') {
       return 'Por favor, escreva um comentário sobre o filme.';
     }
 
-    // Verificar tamanho mínimo do comentário
+   
     if (this.comentario.trim().length < 10) {
       return 'O comentário deve ter pelo menos 10 caracteres.';
     }
 
-    // Verificar tamanho máximo do comentário (se necessário)
+    
     if (this.comentario.trim().length > 500) {
       return 'O comentário deve ter no máximo 500 caracteres.';
     }
 
-    return null; // Validação passou
+    return null; 
   }
 
   private verificarAutenticacao(): boolean {
@@ -136,17 +136,14 @@ export class NovaAvaliacaoComponent implements OnInit {
   }
 
   enviarAvaliacao() {
-    // Evitar múltiplos cliques
     if (this.isEnviandoAvaliacao) {
       return;
     }
 
-    // Verificar autenticação
     if (!this.verificarAutenticacao()) {
       return;
     }
 
-    // Validar formulário
     const validationError = this.validarFormulario();
     if (validationError) {
       this.showMessage(validationError, 'error');
@@ -176,7 +173,6 @@ export class NovaAvaliacaoComponent implements OnInit {
           
           this.showMessage('Avaliação enviada com sucesso!', 'success');
           
-          // Limpar formulário após sucesso
           this.resetarFormulario();
         },
         error: (err: HttpErrorResponse) => {
@@ -189,7 +185,6 @@ export class NovaAvaliacaoComponent implements OnInit {
             errorMessage = 'Não foi possível conectar ao servidor. Verifique sua conexão.';
           } else if (err.status === 401) {
             errorMessage = 'Sessão expirada. Faça login novamente.';
-            // Aqui você pode redirecionar para login se necessário
           } else if (err.status === 403) {
             errorMessage = 'Você não tem permissão para enviar esta avaliação.';
           } else if (err.status === 409) {
@@ -218,7 +213,6 @@ export class NovaAvaliacaoComponent implements OnInit {
       type
     };
 
-    // Auto-hide success messages após 5 segundos
     if (type === 'success') {
       setTimeout(() => {
         this.hideMessage();
@@ -230,12 +224,10 @@ export class NovaAvaliacaoComponent implements OnInit {
     this.message.show = false;
   }
 
-  // Método para retry buscar filmes
   recarregarFilmes() {
     this.buscarFilmes();
   }
 
-  // Getters para o template
   get temFilmes(): boolean {
     return this.filmes.length > 0;
   }

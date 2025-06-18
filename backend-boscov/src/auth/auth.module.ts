@@ -10,7 +10,7 @@ import { JwtStrategy } from './jwt.strategy';
 @Module({
   imports: [
     JwtModule.register({
-      secret: 'secretoforte', 
+      secret: 'boscov-senha', 
       signOptions: { expiresIn: '1d' },
     }),
   ],

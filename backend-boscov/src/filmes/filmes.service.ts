@@ -19,7 +19,6 @@ export class FilmesService {
       generosIds,
     } = data;
 
-    // 1. Cria o filme
     const novoFilme = await this.prisma.filme.create({
       data: {
         nome,
@@ -32,18 +31,18 @@ export class FilmesService {
       },
     });
 
-    // 2. Cria os vínculos na tabela GeneroFilme, se existirem gêneros
+    
     if (generosIds && generosIds.length > 0) {
       await this.prisma.generoFilme.createMany({
         data: generosIds.map((idGenero) => ({
           idFilme: novoFilme.id,
           idGenero,
         })),
-        skipDuplicates: true, // evita erros caso o vínculo já exista
+        skipDuplicates: true, 
       });
     }
 
-    // 3. Retorna o filme com os gêneros incluídos
+  
     return this.prisma.filme.findUnique({
       where: { id: novoFilme.id },
       include: {

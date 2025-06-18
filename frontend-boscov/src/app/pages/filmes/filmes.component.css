@@ -23,7 +23,7 @@
   margin-right: auto;
 }
 
-/* Estados de carregamento e erro */
+
 .loading {
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@
   border: 2px solid #ff4444;
   color: #ff4444;
   padding: 20px;
-  border-radius: 0; /* Quadrado */
+  border-radius: 0; 
   text-align: center;
   font-weight: bold;
   margin: 20px 0;
@@ -74,7 +74,7 @@
   margin-bottom: 20px;
 }
 
-/* Grid de filmes */
+
 .movies-grid {
   display: flex;
   flex-direction: column;
@@ -82,8 +82,7 @@
 }
 
 .movie-card {
-  /* Remove estilos que sobrescrevem o window-box */
-  /* Mantém apenas estilos básicos que não interferem */
+
   transition: all 0.3s ease;
 }
 
@@ -102,7 +101,7 @@
   flex-shrink: 0;
   width: 120px;
   height: 180px;
-  border-radius: 0; /* Quadrado */
+  border-radius: 0; 
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
@@ -149,7 +148,7 @@
   background: linear-gradient(45deg, #4CAF50, #45a049);
   color: white;
   padding: 4px 12px;
-  border-radius: 0; /* Quadrado */
+  border-radius: 0; 
   font-size: 12px;
   font-weight: bold;
   display: inline-block;
@@ -158,12 +157,12 @@
 .genres {
   background: rgba(76, 175, 80, 0.1);
   padding: 6px 12px;
-  border-radius: 0; /* Quadrado */
+  border-radius: 0; 
   border: 1px solid rgba(76, 175, 80, 0.3);
   font-size: 13px;
 }
 
-/* Sistema de estrelas */
+
 .rating-row {
   margin-top: 8px;
   align-items: flex-start;
@@ -224,7 +223,7 @@
   gap: 20px;
   background: rgba(255, 255, 255, 0.9);
   padding: 15px 25px;
-  border-radius: 0; /* Quadrado */
+  border-radius: 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -236,7 +235,7 @@
   gap: 8px;
   padding: 12px 20px;
   border: none;
-  border-radius: 0; /* Quadrado */
+  border-radius: 0; 
   background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
   color: white;
   font-family: inherit;
@@ -279,7 +278,7 @@
   gap: 8px;
   background: rgba(255, 255, 255, 0.8);
   padding: 8px 20px;
-  border-radius: 0; /* Quadrado */
+  border-radius: 0; 
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -308,11 +307,11 @@
   text-align: center;
   background: rgba(0, 0, 0, 0.3);
   padding: 8px 16px;
-  border-radius: 0; /* Quadrado */
+  border-radius: 0; 
   backdrop-filter: blur(5px);
 }
 
-/* Responsivo */
+
 @media (max-width: 768px) {
   .container {
     padding: 15px;

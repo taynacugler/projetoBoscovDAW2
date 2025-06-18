@@ -3,7 +3,7 @@
 <div style="padding-top: 70px;"> 
   <app-window-box title="Nova Avaliação" class="form-container">
 
-    <!-- Mensagens de erro/sucesso/warning -->
+
     <div *ngIf="message.show" 
          class="message-container"
          [ngClass]="{
@@ -21,13 +21,13 @@
       </div>
     </div>
 
-    <!-- Loading de filmes -->
+ 
     <div *ngIf="isLoadingFilmes" class="loading-container">
       <div class="loading-spinner"></div>
       <p class="loading-text">Carregando filmes...</p>
     </div>
 
-    <!-- Erro ao carregar filmes com botão de retry -->
+  
     <div *ngIf="!isLoadingFilmes && !temFilmes && message.type === 'error'" class="empty-state">
       <div class="empty-state-content">
         <p class="empty-state-text">Não foi possível carregar os filmes.</p>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <!-- Lista de filmes -->
+
     <div *ngIf="!isLoadingFilmes && temFilmes">
       <app-filme-list
         [filmes]="filmes"
@@ -48,7 +48,7 @@
       </app-filme-list>
     </div>
 
-    <!-- Formulário de avaliação -->
+
     <div *ngIf="filmeSelecionado" class="avaliacao-form">
 
       <h3 class="filme-selecionado">
@@ -101,7 +101,6 @@
 
     </div>
 
-    <!-- Estado vazio quando não há filme selecionado -->
     <div *ngIf="!filmeSelecionado && !isLoadingFilmes && temFilmes" class="select-movie-hint">
       <p>Selecione um filme acima para começar sua avaliação</p>
     </div>
