@@ -1,4 +1,5 @@
 <app-menu></app-menu>
+
 <div style="margin-top: 70px;">
   <div *ngIf="carregando">Carregando filmes...</div>
   <div *ngIf="erro" style="color:red">{{ erro }}</div>
@@ -8,9 +9,17 @@
   </div>
 
   <div *ngIf="!carregando && filmes.length > 0" class="lista-filmes">
-    <app-window-box *ngFor="let filme of filmesPaginados" [title]="filme.nome"
-      style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; display: flex; align-items: center; margin-top: 50px;">
-      <img [src]="filme.poster" alt="{{ filme.nome }}" width="100" style="margin-right: 15px;">
+    <app-window-box
+      *ngFor="let filme of filmesPaginados"
+      [title]="filme.nome"
+      style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; display: flex; align-items: center; margin-top: 50px;"
+    >
+      <img
+        [src]="filme.poster"
+        alt="{{ filme.nome }}"
+        width="100"
+        style="margin-right: 15px;"
+      />
       <div>
         <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
         <p><strong>Ano:</strong> {{ filme.anoLancamento }}</p>
@@ -18,14 +27,21 @@
         <p><strong>Produtora:</strong> {{ filme.produtora }}</p>
         <p><strong>Classificação:</strong> {{ filme.classificacao }}</p>
         <p><strong>Gêneros:</strong> {{ getDescricaoGeneros(filme) }}</p>
+        <p><strong>Média de Avaliações:</strong> {{ getMediaNotas(filme) }}</p>
       </div>
     </app-window-box>
 
     <!-- Paginação -->
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 30px;">
-      <button (click)="voltarPagina()" [disabled]="paginaAtual === 1">Anterior</button>
+    <div
+      style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 30px;"
+    >
+      <button (click)="voltarPagina()" [disabled]="paginaAtual === 1">
+        Anterior
+      </button>
       <span>Página {{ paginaAtual }} de {{ totalPaginas }}</span>
-      <button (click)="avancarPagina()" [disabled]="paginaAtual === totalPaginas">Próxima</button>
+      <button (click)="avancarPagina()" [disabled]="paginaAtual === totalPaginas">
+        Próxima
+      </button>
     </div>
   </div>
 </div>

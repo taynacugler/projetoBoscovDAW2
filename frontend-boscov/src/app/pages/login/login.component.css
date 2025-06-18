@@ -7,7 +7,6 @@
   padding: 40px 20px;
   font-family: 'Courier New', monospace;
   color: #fff;
-
   background: 
     radial-gradient(circle at 20% 30%, #ff66c4, transparent 25%),
     radial-gradient(circle at 80% 20%, #7fff00, transparent 30%),
@@ -16,7 +15,6 @@
     radial-gradient(circle at 30% 70%, #ffcc00, transparent 45%),
     
     conic-gradient(from 90deg, #ff1493, #00ffff, #7fff00, #ff1493);
-
   background-blend-mode: screen, lighten;
   background-color: #222;
 }
@@ -28,7 +26,6 @@ h1 {
   text-transform: uppercase; 
   text-shadow: 1px 1px 2px #000; 
 }
-
 
 p {
   font-size: 1rem;
@@ -58,11 +55,11 @@ input[type="text"], input[type="password"] {
   box-shadow: inset 2px 2px 5px rgba(0, 255, 255, 0.4);
   transition: all 0.3s ease-in-out;
 }
+
 input[type="text"]:focus, input[type="password"]:focus {
   border-color: #ff00ff;
   box-shadow: inset 2px 2px 5px rgba(255, 0, 255, 0.5);
 }
-
 
 button {
   background-color: #00ffff; 
@@ -76,7 +73,6 @@ button {
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 6px rgba(0, 255, 255, 0.3);
 }
-
 
 button:hover {
   background-color: #ff00ff; 
@@ -116,22 +112,40 @@ input[type="checkbox"] {
   font-size: 1rem;
   text-align: center;
 }
+
 .mensagem {
   margin-top: 15px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 5px;
   font-size: 0.9rem;
   text-align: center;
+  font-family: 'Courier New', monospace;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .sucesso {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
 .erro {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }

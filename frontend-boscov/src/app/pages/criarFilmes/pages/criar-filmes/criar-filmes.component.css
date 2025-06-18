@@ -23,25 +23,314 @@
 .form-container {
   margin-top: 100px;
 }
-  
-  h1 {
-    font-size: 2.5rem;
-    color: #ff00ff;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 2px #000;
+
+h1 {
+  font-size: 2.5rem;
+  color: #ff00ff;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px #000;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Container para mensagens de sucesso e erro */
+.message-container {
+  margin-bottom: 20px;
+}
+
+.success-message {
+  background: linear-gradient(135deg, #00ff00, #32cd32);
+  color: #000;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  text-shadow: none;
+  box-shadow: 0 4px 8px rgba(0, 255, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
+}
+
+.error-message {
+  background: linear-gradient(135deg, #ff0040, #ff1066);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(255, 0, 64, 0.3);
+  animation: slideIn 0.3s ease-out;
+}
+
+.message-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Container para cada campo com erro */
+.field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-error {
+  color: #ff0040;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  background: rgba(255, 0, 64, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid #ff0040;
+  text-shadow: none;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Estilos para a seção de gêneros */
+.generos-label {
+  color: #ff00ff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.generos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 2px solid rgba(255, 0, 255, 0.3);
+}
+
+.genero-item {
+  display: flex;
+  align-items: center;
+}
+
+.genero-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.genero-checkbox:hover {
+  background: rgba(255, 0, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.genero-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  height: 20px;
+  width: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #ff00ff;
+  border-radius: 4px;
+  margin-right: 10px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.genero-checkbox input:checked ~ .checkmark {
+  background: linear-gradient(135deg, #ff00ff, #ff66c4);
+  border-color: #ff00ff;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+
+.genero-checkbox input:checked ~ .checkmark:after {
+  content: "✓";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.genero-text {
+  color: #fff;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px #000;
+  transition: color 0.3s ease;
+}
+
+.genero-checkbox:hover .genero-text {
+  color: #ff66c4;
+}
+
+/* Estados de loading e erro para gêneros */
+.generos-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 2px solid rgba(127, 255, 0, 0.3);
+  color: #7fff00;
+  font-weight: bold;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(127, 255, 0, 0.3);
+  border-top: 2px solid #7fff00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.generos-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: rgba(255, 0, 64, 0.1);
+  border-radius: 8px;
+  border: 2px solid rgba(255, 0, 64, 0.3);
+  color: #ff0040;
+  font-weight: bold;
+}
+
+.error-icon {
+  font-size: 1.2rem;
+}
+
+.retry-button {
+  background: linear-gradient(135deg, #ff0040, #ff1066);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
+}
+
+.retry-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 0, 64, 0.3);
+}
+
+/* Estilo para formulário desabilitado durante loading */
+form.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.button-container.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Animações */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  p {
-    font-size: 1rem;
-    margin-bottom: 30px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Scrollbar customizada para a lista de gêneros */
+.generos-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.generos-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.generos-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #ff00ff, #ff66c4);
+  border-radius: 3px;
+}
+
+.generos-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ff66c4, #ff00ff);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .generos-container {
+    grid-template-columns: 1fr;
+    max-height: 250px;
   }
   
   form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 100%;
   }
-  
+}
+
+/* Estilo para botão desabilitado */
+app-button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

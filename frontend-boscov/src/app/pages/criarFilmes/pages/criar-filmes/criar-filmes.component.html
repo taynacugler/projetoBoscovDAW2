@@ -1,31 +1,117 @@
 <app-menu></app-menu>
 
 <app-window-box title="Criar Filme" class="form-container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- Mensagens de sucesso e erro -->
+  <div class="message-container">
+    <div *ngIf="showSuccessMessage" class="success-message">
+      <span class="message-icon">✓</span>
+      {{ successMessage }}
+    </div>
+    
+    <div *ngIf="showErrorMessage" class="error-message">
+      <span class="message-icon">✗</span>
+      {{ errorMessage }}
+    </div>
+  </div>
 
-    <app-input label="Nome" [formControl]="nome" type="text"></app-input>
-    <app-input label="Diretor" [formControl]="diretor" type="text"></app-input>
-    <app-input label="Ano de Lançamento" [formControl]="anoLancamento" type="number"></app-input>
-    <app-input label="Duração (min)" [formControl]="duracao" type="number"></app-input>
-    <app-input label="Produtora" [formControl]="produtora" type="text"></app-input>
-    <app-input label="Classificação" [formControl]="classificacao" type="text"></app-input>
-    <app-input label="Poster (URL)" [formControl]="poster" type="url"></app-input>
-
-    <div style="margin-top: 20px;">
-      <label><strong>Gêneros</strong></label>
-      <div *ngFor="let genero of generos" style="display: flex; align-items: center;">
-        <input
-          type="checkbox"
-          [value]="genero.id"
-          (change)="onGeneroToggle($event)"
-          [checked]="generosIds.value.includes(genero.id)"
-        />
-        <span style="margin-left: 8px;">{{ genero.descricao }}</span>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" [class.loading]="isLoading">
+    <!-- Campos do formulário com mensagens de erro -->
+    <div class="field-container">
+      <app-input label="Nome" [formControl]="nome" type="text"></app-input>
+      <div class="field-error" *ngIf="nome.touched && nome.errors">
+        {{ getErrorMessage('nome') }}
       </div>
     </div>
 
-    <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 20px;">
-      <app-button label="Criar Filme" tipo="submit"></app-button>
+    <div class="field-container">
+      <app-input label="Diretor" [formControl]="diretor" type="text"></app-input>
+      <div class="field-error" *ngIf="diretor.touched && diretor.errors">
+        {{ getErrorMessage('diretor') }}
+      </div>
+    </div>
+
+    <div class="field-container">
+      <app-input label="Ano de Lançamento" [formControl]="anoLancamento" type="number"></app-input>
+      <div class="field-error" *ngIf="anoLancamento.touched && anoLancamento.errors">
+        {{ getErrorMessage('anoLancamento') }}
+      </div>
+    </div>
+
+    <div class="field-container">
+      <app-input label="Duração (min)" [formControl]="duracao" type="number"></app-input>
+      <div class="field-error" *ngIf="duracao.touched && duracao.errors">
+        {{ getErrorMessage('duracao') }}
+      </div>
+    </div>
+
+    <div class="field-container">
+      <app-input label="Produtora" [formControl]="produtora" type="text"></app-input>
+      <div class="field-error" *ngIf="produtora.touched && produtora.errors">
+        {{ getErrorMessage('produtora') }}
+      </div>
+    </div>
+
+    <div class="field-container">
+      <app-input label="Classificação" [formControl]="classificacao" type="text"></app-input>
+      <div class="field-error" *ngIf="classificacao.touched && classificacao.errors">
+        {{ getErrorMessage('classificacao') }}
+      </div>
+    </div>
+
+    <div class="field-container">
+      <app-input label="Poster (URL)" [formControl]="poster" type="url"></app-input>
+      <div class="field-error" *ngIf="poster.touched && poster.errors">
+        {{ getErrorMessage('poster') }}
+      </div>
+    </div>
+
+    <!-- Seção de gêneros reformulada -->
+    <div class="field-container">
+      <label class="generos-label"><strong>Gêneros</strong></label>
+      
+      <!-- Loading de gêneros -->
+      <div *ngIf="generosCarregando" class="generos-loading">
+        <span class="loading-spinner"></span>
+        Carregando gêneros...
+      </div>
+      
+      <!-- Erro ao carregar gêneros -->
+      <div *ngIf="erroCarregarGeneros" class="generos-error">
+        <span class="error-icon">⚠</span>
+        Erro ao carregar gêneros.
+        <button type="button" class="retry-button" (click)="recarregarGeneros()">
+          Tentar novamente
+        </button>
+      </div>
+      
+      <!-- Lista de gêneros -->
+      <div *ngIf="!generosCarregando && !erroCarregarGeneros" class="generos-container">
+        <div *ngFor="let genero of generos" class="genero-item">
+          <label class="genero-checkbox">
+            <input
+              type="checkbox"
+              [value]="genero.id"
+              (change)="onGeneroToggle($event)"
+              [checked]="generosIds.value.includes(genero.id)"
+            />
+            <span class="checkmark"></span>
+            <span class="genero-text">{{ genero.descricao }}</span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Erro de validação dos gêneros -->
+      <div class="field-error" *ngIf="generosIds.touched && generosIds.errors">
+        {{ getErrorMessage('generosIds') }}
+      </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="button-container" [class.loading]="isLoading">
+      <app-button 
+        [label]="isLoading ? 'Criando...' : 'Criar Filme'" 
+        tipo="submit">
+      </app-button>
     </div>
   </form>
 </app-window-box>

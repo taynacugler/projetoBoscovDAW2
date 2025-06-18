@@ -42,6 +42,15 @@ export class FilmesComponent implements OnInit {
   return filme.generos?.map(gf => gf.genero?.descricao).join(', ') || '';
 }
 
+getMediaNotas(filme: Filme): number {
+  const avaliacoesValidas = filme.avaliacoes?.filter(a => a.deletedAt === null) || [];
+  if (avaliacoesValidas.length === 0) return 0;
+
+  const soma = avaliacoesValidas.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
+  console.log(`Soma das notas: ${soma}, Avaliações válidas: ${avaliacoesValidas.length}`);
+  if (soma === 0) return 0;
+  return +(soma / avaliacoesValidas.length).toFixed(1);
+}
 
   get filmesPaginados(): Filme[] {
     const inicio = (this.paginaAtual - 1) * this.itensPorPagina;

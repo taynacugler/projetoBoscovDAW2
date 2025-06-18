@@ -1,15 +1,76 @@
- <img src="BOSCOV.png" width="250" alt="Logo" style="display: flex; padding-top: -10px"/>
-<app-window-box title="CADASTRO" >
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <app-input label="Nome" [formControl]="nome" type="text"></app-input>
-    <app-input label="Email" [formControl]="email" type="email"></app-input>
-    <app-input label="Senha" [formControl]="senha" type="password"></app-input>
-    <app-input label="Username" [formControl]="username" type="text"></app-input>
-    <app-input label="Data de Nascimento" [formControl]="dataNascimento" type="date"></app-input>
+<!-- cadastro.component.html -->
+<img src="BOSCOV.png" width="250" alt="Logo" style="display: flex; padding-top: -10px"/>
 
+<app-window-box title="CADASTRO">
+  
+  <!-- Mensagem de Sucesso -->
+  <div *ngIf="showSuccess" class="alert alert-success">
+    <span class="alert-icon">✓</span>
+    <span class="alert-message">{{ successMessage }}</span>
+    <button type="button" class="alert-close" (click)="fecharMensagem()">×</button>
+  </div>
+  
+  <!-- Mensagem de Erro -->
+  <div *ngIf="showError" class="alert alert-error">
+    <span class="alert-icon">⚠</span>
+    <span class="alert-message">{{ errorMessage }}</span>
+    <button type="button" class="alert-close" (click)="fecharMensagem()">×</button>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+    <!-- Campo Nome -->
+    <div class="input-group">
+      <app-input label="Nome" [formControl]="nome" type="text"></app-input>
+      <div *ngIf="nome.invalid && nome.touched" class="field-error">
+        {{ getFieldErrorMessage('nome') }}
+      </div>
+    </div>
+    
+    <!-- Campo Email -->
+    <div class="input-group">
+      <app-input label="Email" [formControl]="email" type="email"></app-input>
+      <div *ngIf="email.invalid && email.touched" class="field-error">
+        {{ getFieldErrorMessage('email') }}
+      </div>
+    </div>
+    
+    <!-- Campo Senha -->
+    <div class="input-group">
+      <app-input label="Senha" [formControl]="senha" type="password"></app-input>
+      <div *ngIf="senha.invalid && senha.touched" class="field-error">
+        {{ getFieldErrorMessage('senha') }}
+      </div>
+      <div class="field-hint">Mínimo 6 caracteres</div>
+    </div>
+    
+    <!-- Campo Username -->
+    <div class="input-group">
+      <app-input label="Username" [formControl]="username" type="text"></app-input>
+      <div *ngIf="username.invalid && username.touched" class="field-error">
+        {{ getFieldErrorMessage('username') }}
+      </div>
+      <div class="field-hint">Apenas letras, números, traços (-) e underscores (_)</div>
+    </div>
+    
+    <!-- Campo Data de Nascimento -->
+    <div class="input-group">
+      <app-input label="Data de Nascimento" [formControl]="dataNascimento" type="date"></app-input>
+      <div *ngIf="dataNascimento.invalid && dataNascimento.touched" class="field-error">
+        {{ getFieldErrorMessage('dataNascimento') }}
+      </div>
+    </div>
+    
     <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 20px;">
-          <app-button label="Cadastrar" tipo="submit" (click)="onSubmit()"></app-button>
-      <app-button label="Voltar para Login" (click)="voltar()"></app-button>
+      <app-button 
+        [label]="isLoading ? 'Cadastrando...' : 'Cadastrar'" 
+        tipo="submit" 
+        (click)="onSubmit()">
+      </app-button>
+      <app-button 
+        label="Voltar para Login" 
+        (click)="voltar()">
+      </app-button>
     </div>
   </form>
 </app-window-box>

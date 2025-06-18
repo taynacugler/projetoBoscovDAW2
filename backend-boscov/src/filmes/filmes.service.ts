@@ -75,6 +75,7 @@ export class FilmesService {
       where: { id },
       include: { generos: { include: { genero: true } }, avaliacoes: true },
     });
+
   }
 
   update(id: number, data: Prisma.FilmeUpdateInput) {

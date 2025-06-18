@@ -17,6 +17,287 @@
   background-blend-mode: screen, lighten;
   background-color: #222;
 }
+
 .form-container {
   margin-top: 50px;
+}
+
+/* Mensagens de erro/sucesso/warning */
+.message-container {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 2px solid;
+  animation: fadeInDown 0.3s ease-out;
+}
+
+.error-message {
+  background-color: #fef2f2;
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.success-message {
+  background-color: #f0fdf4;
+  border-color: #16a34a;
+  color: #16a34a;
+}
+
+.warning-message {
+  background-color: #fefbeb;
+  border-color: #d97706;
+  color: #d97706;
+}
+
+.message-content {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.message-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.message-text {
+  flex: 1;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.message-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.message-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 16px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  color: #6b7280;
+  font-size: 16px;
+  margin: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Estado vazio */
+.empty-state {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.empty-state-content {
+  text-align: center;
+}
+
+.empty-state-text {
+  color: #6b7280;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Formulário de avaliação */
+.avaliacao-form {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filme-selecionado {
+  margin: 0;
+  padding: 16px;
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.filme-label {
+  font-weight: bold;
+  color: #1e40af;
+}
+
+.filme-nome {
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-label {
+  font-weight: bold;
+  color: #374151;
+  font-size: 16px;
+}
+
+.field-hint {
+  font-size: 14px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.character-count {
+  font-size: 12px;
+  color: #6b7280;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.count-warning {
+  color: #d97706;
+  font-weight: 500;
+}
+
+.count-error {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Ações do formulário */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.btn-secundario {
+  background: none;
+  border: 2px solid #6b7280;
+  color: #6b7280;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secundario:hover {
+  background-color: #6b7280;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.btn-secundario:active {
+  transform: translateY(0);
+}
+
+/* Botão desabilitado */
+.button-wrapper.button-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.button-wrapper.button-disabled app-button {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+app-button.sending {
+  opacity: 0.8;
+}
+
+/* Hint para selecionar filme */
+.select-movie-hint {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.select-movie-hint p {
+  color: #6b7280;
+  font-size: 16px;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Animações */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filme-selecionado {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .character-count {
+    text-align: left;
+  }
+}
+
+/* Estados hover para melhor feedback */
+.form-field:has(app-avaliacao-stars:hover),
+.form-field:has(app-avaliacao-text:hover) {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* Indicador visual para campos obrigatórios */
+.field-label::after {
+  content: " *";
+  color: #dc2626;
 }

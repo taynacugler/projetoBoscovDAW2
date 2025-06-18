@@ -1,31 +1,109 @@
 <app-menu></app-menu>
 
-<div style="padding-top: 70px;"> <!-- Espaço para o menu fixo -->
+<div style="padding-top: 70px;"> 
   <app-window-box title="Nova Avaliação" class="form-container">
 
-    <app-filme-list
-      [filmes]="filmes"
-      (filmeSelecionado)="onFilmeSelecionado($event)">
-    </app-filme-list>
+    <!-- Mensagens de erro/sucesso/warning -->
+    <div *ngIf="message.show" 
+         class="message-container"
+         [ngClass]="{
+           'error-message': message.type === 'error',
+           'success-message': message.type === 'success', 
+           'warning-message': message.type === 'warning'
+         }">
+      <div class="message-content">
+        <span class="message-icon" [innerHTML]="
+          message.type === 'error' ? '⚠️' : 
+          message.type === 'success' ? '✅' : '⚠️'
+        "></span>
+        <span class="message-text">{{ message.text }}</span>
+        <button class="message-close" (click)="hideMessage()" title="Fechar">×</button>
+      </div>
+    </div>
 
-    <div *ngIf="filmeSelecionado" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+    <!-- Loading de filmes -->
+    <div *ngIf="isLoadingFilmes" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Carregando filmes...</p>
+    </div>
 
-      <h3 style="margin: 0;">Filme: {{ filmeSelecionado?.nome }}</h3>
+    <!-- Erro ao carregar filmes com botão de retry -->
+    <div *ngIf="!isLoadingFilmes && !temFilmes && message.type === 'error'" class="empty-state">
+      <div class="empty-state-content">
+        <p class="empty-state-text">Não foi possível carregar os filmes.</p>
+        <div class="button-wrapper" [ngClass]="{'button-disabled': isLoadingFilmes}">
+          <app-button 
+            label="Tentar Novamente" 
+            (click)="!isLoadingFilmes ? recarregarFilmes() : null">
+          </app-button>
+        </div>
+      </div>
+    </div>
 
-      <app-avaliacao-stars
-        [nota]="nota"
-        (notaChange)="nota = $event">
-      </app-avaliacao-stars>
+    <!-- Lista de filmes -->
+    <div *ngIf="!isLoadingFilmes && temFilmes">
+      <app-filme-list
+        [filmes]="filmes"
+        (filmeSelecionado)="onFilmeSelecionado($event)">
+      </app-filme-list>
+    </div>
 
-      <app-avaliacao-text
-        [comentario]="comentario"
-        (comentarioChange)="comentario = $event">
-      </app-avaliacao-text>
+    <!-- Formulário de avaliação -->
+    <div *ngIf="filmeSelecionado" class="avaliacao-form">
 
-      <div style="margin-top: 10px; display: flex; justify-content: flex-start;">
-        <app-button label="Enviar" (click)="enviarAvaliacao()"></app-button>
+      <h3 class="filme-selecionado">
+        <span class="filme-label">Filme:</span> 
+        <span class="filme-nome">{{ filmeSelecionado.nome }}</span>
+      </h3>
+
+      <div class="form-field">
+        <label class="field-label">Sua nota:</label>
+        <app-avaliacao-stars
+          [nota]="nota"
+          (notaChange)="nota = $event">
+        </app-avaliacao-stars>
+        <div *ngIf="nota === 0" class="field-hint">
+          Clique nas estrelas para dar sua nota
+        </div>
       </div>
 
+      <div class="form-field">
+        <label class="field-label">Seu comentário:</label>
+        <app-avaliacao-text
+          [comentario]="comentario"
+          (comentarioChange)="comentario = $event">
+        </app-avaliacao-text>
+        <div class="character-count" 
+             [ngClass]="{'count-warning': comentario.length > 450}">
+          {{ comentario.length }}/500 caracteres
+          <span *ngIf="comentario.trim().length < 10 && comentario.length > 0" class="count-error">
+            (mínimo 10 caracteres)
+          </span>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <div class="button-wrapper" [ngClass]="{'button-disabled': !podeEnviar}">
+          <app-button 
+            [label]="isEnviandoAvaliacao ? 'Enviando...' : 'Enviar Avaliação'"
+            (click)="podeEnviar ? enviarAvaliacao() : null"
+            [class.sending]="isEnviandoAvaliacao">
+          </app-button>
+        </div>
+        
+        <button *ngIf="!isEnviandoAvaliacao" 
+                class="btn-secundario" 
+                (click)="resetarFormulario()"
+                type="button">
+          Limpar
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Estado vazio quando não há filme selecionado -->
+    <div *ngIf="!filmeSelecionado && !isLoadingFilmes && temFilmes" class="select-movie-hint">
+      <p>Selecione um filme acima para começar sua avaliação</p>
     </div>
 
   </app-window-box>

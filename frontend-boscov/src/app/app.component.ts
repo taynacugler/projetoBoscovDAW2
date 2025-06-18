@@ -10,7 +10,7 @@ import { FilmeListComponent } from './shared/components/filme-list/filme-list.co
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent, ButtonComponent, InputComponent, WindowBoxComponent, AvaliacaoStarsComponent, AvaliacaoTextComponent, FilmeListComponent],  
+  imports: [RouterOutlet],  
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
